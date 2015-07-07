@@ -1,0 +1,132 @@
+---
+"0":
+  "0000":
+    nivel: 0
+    campos:
+      - "cod_ver"
+      - "cod_fin"
+      - "dt_ini"
+      - "dt_fin"
+      - "nome"
+      - "cnpj"
+      - "cpf"
+      - "uf"
+      - "ie"
+      - "cod_mun"
+      - "im"
+      - "suframa"
+      - "ind_perfil"
+      - "ind_ativ"
+  "0001":
+    nivel: 1
+    pai: "0000"
+    campos:
+      - "ind_mov"
+  "0005":
+    nivel: 2
+    pai: "0001"
+    campos:
+      - "fantasia"
+      - "cep"
+      - "endereco"
+      - "num"
+      - "compl"
+      - "bairro"
+      - "fone"
+      - "fax"
+      - "email"
+"C":
+  "C001":
+    nivel: 1
+    campos:
+      - "ind_mov"
+  "C400":
+    nivel: 2
+    pai: "C001"
+    campos:
+      - "cod_mod"
+      - "ecf_mod"
+      - "ecf_fab"
+      - "ecf_cx"
+  "C405":
+    nivel: 3
+    pai: "C400"
+    campos:
+      - "dt_doc"
+      - "cro"
+      - "crz"
+      - "num_coo_fin"
+      - "gt_fin"
+      - "vl_brt"
+  "C420":
+    nivel: 4
+    pai: "C405"
+    campos:
+      - "cod_tot_par"
+      - "vlr_acum_tot"
+      - "nr_tot"
+      - "descr_nr_tot"
+  "C460":
+    nivel: 4
+    pai: "C405"
+    campos:
+      - "cod_mod"
+      - "cod_sit"
+      - "num_doc"
+      - "dt_doc"
+      - "vl_doc"
+      - "vl_pis"
+      - "vl_cofins"
+      - "cpf_cnpj"
+      - "nome_adq"
+  "C470":
+    nivel: 5
+    pai: "C460"
+    campos:
+      - "cod_item"
+      - "qtd"
+      - "qtd_canc"
+      - "unid"
+      - "vl_item"
+      - "cst_icms"
+      - "cfop"
+      - "aliq_icms"
+      - "vl_pis"
+      - "vl_cofins"
+  "C481":
+    nivel: 4
+    pai: "C405"
+    campos:
+      - "cst_pis"
+      - "vl_item"
+      - "vl_bc_pis"
+      - "aliq_pis"
+      - "quant_bc_pis"
+      - "aliq_pis_quant"
+      - "vl_pis"
+      - "cod_item"
+      - "cod_cta"
+  "C485":
+    nivel: 4
+    pai: "C405"
+    campos:
+      - "cst_cofins"
+      - "vl_item"
+      - "vl_bc_cofins"
+      - "aliq_cofins"
+      - "quant_bc_cofins"
+      - "aliq_cofins_quant"
+      - "vl_cofins"
+      - "cod_item"
+      - "cod_cta"
+  "C490":
+    nivel: 4
+    pai: "C405"
+    campos:
+      - "cst_icms"
+      - "cfop"
+      - "aliq_icms"
+      - "vl_opr"
+      - "vl_bc_icms"
+      - "vl_icms"
+      - "cod_obs"

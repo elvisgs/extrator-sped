@@ -1,0 +1,15 @@
+mssql:
+  adapter: ado
+  host: localhost\sqlexpress
+  user: sa
+  password: senha
+  provider: SQLNCLI11
+  create_db_cmd: sqlcmd -S localhost\sqlexpress -v DbName=@db_name@ DataDir="@data_dir@" -i scripts/template_sped_@layout@_mssql.sql
+
+postgres:
+  adapter: postgres
+  host: localhost
+  user: postgres
+  password: senha
+  create_db_cmd: psql -U postgres -q -d sped -v db_name=@db_name@ -f scripts/template_sped_@layout@_postgres.sql
+
