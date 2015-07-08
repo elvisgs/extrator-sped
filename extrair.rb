@@ -58,8 +58,16 @@ Sequel.connect($config) do |db|
           next
         end
 
-        if $layout == 'contrib' and registro.nome.end_with? '010'
-          cnpj = registro.valores[0]
+        if $layout == 'contrib'
+          if registro.pai == '0001'
+            cnpj = ''
+          end
+          if registro.nome.end_with? '010'
+            cnpj = registro.valores[0]
+          end
+          if registro.nome == '0140'
+            cnpj = registro.valores[2]
+          end
         end
 
         id = $chaves[registro.nome]
