@@ -4,13 +4,15 @@ require 'yaml'
 class Registro
   attr_reader :nome, :bloco, :pai, :campos, :valores
 
-  def initialize(linha, layout = 'fiscal')
-    @blocos = YAML.load_file("config/hierarquia-sped-#{layout}.yml")
+  @@blocos = nil
+
+  def initialize(linha, layout = :fiscal)
+    @@blocos ||= YAML.load_file("config/hierarquia-sped-#{layout}.yml")
     @valores = dividir_linha_em_valores linha
     @nome = @valores.shift
     @bloco = @nome[0]
-    @pai = @blocos[@bloco][@nome]['pai']
-    @campos = @blocos[@bloco][@nome]['campos']
+    @pai = @@blocos[@bloco][@nome]['pai']
+    @campos = @@blocos[@bloco][@nome]['campos']
 
     corrigir_caracteres_especiais
     corrigir_datas

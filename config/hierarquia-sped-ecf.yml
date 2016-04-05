@@ -35,6 +35,27 @@
       - "fone"
       - "fax"
       - "email"
+  "0190":
+    nivel: 2
+    pai: "0001"
+    campos:
+      - "unid"
+      - "descr"
+  "0200":
+    nivel: 2
+    pai: "0001"
+    campos:
+      - "cod_item"
+      - "descr_item"
+      - "cod_barra"
+      - "cod_ant_item"
+      - "unid_inv"
+      - "tipo_item"
+      - "cod_ncm"
+      - "ex_ipi"
+      - "cod_gen"
+      - "cod_lst"
+      - "aliq_icms"
 "C":
   "C001":
     nivel: 1
@@ -66,6 +87,16 @@
       - "vlr_acum_tot"
       - "nr_tot"
       - "descr_nr_tot"
+  "C425":
+    nivel: 5
+    pai: "C420"
+    campos:
+      - "cod_item"
+      - "qtd"
+      - "unid"
+      - "vl_item"
+      - "vl_pis"
+      - "vl_cofins"
   "C460":
     nivel: 4
     pai: "C405"

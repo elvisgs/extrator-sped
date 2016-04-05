@@ -1,4 +1,5 @@
-source "http://rubygems.org"
+source 'http://rubygems.org'
 
-gem "pg"
-gem "sequel"
+gem 'pg'
+gem 'ruby-progressbar'
+gem 'sequel'

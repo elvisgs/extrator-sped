@@ -516,7 +516,7 @@
       - "mes_ref"
   "1990":
     nivel: 1
-    pai: ""
+    pai: "0000"
     campos:
       - "qtd_lin_1"
 "9":
@@ -533,12 +533,12 @@
       - "qtd_reg_blc"
   "9990":
     nivel: 1
-    pai: ""
+    pai: "0000"
     campos:
       - "qtd_lin_9"
   "9999":
     nivel: 0
-    pai: ""
+    pai: "0000"
     campos:
       - "qtd_lin"
 "C":
@@ -1244,7 +1244,7 @@
       - "cod_obs"
   "C990":
     nivel: 1
-    pai: ""
+    pai: "0000"
     campos:
       - "qtd_lin_c"
 "D":
@@ -1750,7 +1750,7 @@
       - "vl_icms_st"
   "D990":
     nivel: 1
-    pai: ""
+    pai: "0000"
     campos:
       - "qtd_lin_d"
 "E":
@@ -1936,7 +1936,7 @@
       - "descr_aj"
   "E990":
     nivel: 1
-    pai: ""
+    pai: "0000"
     campos:
       - "qtd_lin_e"
 "G":
@@ -2002,7 +2002,7 @@
       - "cod_item"
   "G990":
     nivel: 1
-    pai: ""
+    pai: "0000"
     campos:
       - "qtd_lin_g"
 "H":
@@ -2031,6 +2031,7 @@
       - "cod_part"
       - "txt_compl"
       - "cod_cta"
+      - "vl_item_ir"
   "H020":
     nivel: 4
     pai: "H010"
@@ -2040,6 +2041,6 @@
       - "vl_icms"
   "H990":
     nivel: 1
-    pai: ""
+    pai: "0000"
     campos:
       - "qtd_lin_h"
