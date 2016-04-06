@@ -11,6 +11,12 @@ def mostrar_uso
   exit
 end
 
+def contar_linhas(file)
+  `wc -l "#{file}"`.strip.split(' ')[0].to_i
+rescue
+  `find /v /c "" "#{file}"`.strip.split(' ').last.to_i
+end
+
 $cwd = File.dirname(__FILE__)
 
 $sgbd = ENV['SGBD_EXTRACAO'] || 'postgres' # mssql|postgres
@@ -56,7 +62,7 @@ Sequel.connect($config) do |db|
 
     puts ("\n[%03d/%03d] %s" % [$cont + 1, num_arquivos, File.basename(f)])
 
-    total_linhas = `wc -l "#{f}"`.strip.split(' ')[0].to_i
+    total_linhas = contar_linhas f
 
     progressbar = ProgressBar.create(:title => 'Progresso', :format => "[%B] %p%%")
 
