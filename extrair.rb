@@ -1,8 +1,15 @@
+#!/usr/bin/env ruby
+
 require 'find'
 require 'ruby-progressBar'
 require 'sequel'
 require 'yaml'
 require_relative 'registro'
+
+def mostrar_uso
+  puts 'Uso: ruby extrair.rb <nome_bd> [fiscal|contrib|ecf] [caminho_sped]'
+  exit
+end
 
 $cwd = File.dirname(__FILE__)
 
@@ -10,8 +17,14 @@ $sgbd = ENV['SGBD_EXTRACAO'] || 'postgres' # mssql|postgres
 $config = YAML.load_file('config/database.yml')[$sgbd]
 $data_dir = File.absolute_path($cwd + '\data').gsub('/', '\\')
 
-$nome_bd = ARGV[0]
-$layout = (ARGV[1] || 'fiscal').to_sym
+$nome_bd = ARGV.shift
+$layout = (ARGV.shift || 'fiscal').to_sym
+$caminho = ARGV.shift
+
+if not $caminho.nil? and not (File.file?($caminho) or File.directory?($caminho))
+  puts 'Caminho invalido'
+  mostrar_uso
+end
 
 if $nome_bd
   create_db_cmd = $config['create_db_cmd']
@@ -25,9 +38,8 @@ if $nome_bd
 
   $config['database'] = $nome_bd
 else
-  puts 'Informe o nome do banco de dados!'
-  puts 'Uso: ruby extrair.rb <nome_bd> <fiscal|contrib|ecf>'
-  exit
+  puts 'Informe o nome do banco de dados'
+  mostrar_uso
 end
 
 
@@ -36,10 +48,10 @@ $chaves = {}
 $cont = 0
 
 Sequel.connect($config) do |db|
-  arquivos = $cwd + '/sped'
-  num_arquivos = Dir.glob(arquivos + '/*.txt').count
+  $caminho ||= $cwd + '/sped'
+  num_arquivos = if File.file?($caminho) then 1 else Dir.glob($caminho + '/*.txt').count end
 
-  Find.find(arquivos).each do |f|
+  Find.find($caminho).each do |f|
     next if not File.file?(f) or File.zero?(f)
 
     puts ("\n[%03d/%03d] %s" % [$cont + 1, num_arquivos, File.basename(f)])
