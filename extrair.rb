@@ -8,7 +8,7 @@ require_relative 'registro'
 
 def mostrar_uso
   puts 'Uso: ruby extrair.rb <nome_bd> [fiscal|contrib|ecf] [caminho_sped]'
-  exit
+  exit 1
 end
 
 def contar_linhas(file)
@@ -36,11 +36,16 @@ if $nome_bd
   create_db_cmd = $config['create_db_cmd']
   if not create_db_cmd
     puts 'Script de criação do BD não encontrado para o adapter informado'
-    exit
+    exit 1
   end
 
+  create_db_cmd = create_db_cmd
+    .sub('@db_name@', $nome_bd)
+    .sub('@data_dir@', $data_dir)
+    .sub('@layout@', $layout.to_s)
+
   puts 'Criando banco de dados...'
-  system create_db_cmd.sub('@db_name@', $nome_bd).sub('@data_dir@', $data_dir).sub('@layout@', $layout.to_s)
+  system create_db_cmd or exit 1
 
   $config['database'] = $nome_bd
 else
