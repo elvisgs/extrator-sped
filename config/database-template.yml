@@ -11,5 +11,5 @@ postgres:
   host: localhost
   user: postgres
   password: senha
-  create_db_cmd: psql -U postgres -q -d sped -v db_name=@db_name@ -f scripts/template_sped_@layout@_postgres.sql
+  create_db_cmd: psql -U postgres -q -v db_name=@db_name@ -f scripts/template_sped_@layout@_postgres.sql
 
