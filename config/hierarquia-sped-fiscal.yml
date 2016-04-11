@@ -2044,3 +2044,69 @@
     pai: "0000"
     campos:
       - "qtd_lin_h"
+"K":
+  "K001":
+    nivel: 1
+    pai: "0000"
+    campos:
+      - "ind_mov"
+  "K100":
+    nivel: 2
+    pai: "K001"
+    campos:
+      - "dt_ini"
+      - "dt_fin"
+  "K200":
+    nivel: 3
+    pai: "K100"
+    campos:
+      - "dt_est"
+      - "cod_item"
+      - "qtd"
+      - "ind_est"
+      - "cod_part"
+  "K220":
+    nivel: 3
+    pai: "K100"
+    campos:
+      - "dt_mov"
+      - "cod_item_ori"
+      - "cod_item_dest"
+      - "qtd"
+  "K230":
+    nivel: 3
+    pai: "K100"
+    campos:
+      - "dt_ini_op"
+      - "dt_fin_op"
+      - "cod_doc_op"
+      - "cod_item"
+      - "qtd_enc"
+  "K235":
+    nivel: 4
+    pai: "K230"
+    campos:
+      - "dt_saida"
+      - "cod_item"
+      - "qtd"
+      - "cod_ins_subst"
+  "K250":
+    nivel: 3
+    pai: "K100"
+    campos:
+      - "dt_prod"
+      - "cod_item"
+      - "qtd"
+  "K255":
+    nivel: 4
+    pai: "K250"
+    campos:
+      - "dt_cons"
+      - "cod_item"
+      - "qtd"
+      - "cod_ins_subst"
+  "K990":
+    nivel: 1
+    pai: "0000"
+    campos:
+      - "qtd_lin_k"

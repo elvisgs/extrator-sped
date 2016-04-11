@@ -3786,6 +3786,152 @@ CREATE TABLE reg_h990 (
 );
 
 
+--
+-- Name: reg_k001; Type: TABLE; Schema: public; Owner: -; Tablespace:
+--
+
+CREATE TABLE reg_k001 (
+    id bigint NOT NULL,
+    id_pai bigint NOT NULL,
+    acao character varying(1) DEFAULT 'I'::character varying,
+    cnpj_pai character varying(14),
+    carga_id integer,
+    ind_mov character varying(1)
+);
+
+
+--
+-- Name: reg_k100; Type: TABLE; Schema: public; Owner: -; Tablespace:
+--
+
+CREATE TABLE reg_k100 (
+    id bigint NOT NULL,
+    id_pai bigint NOT NULL,
+    acao character varying(1) DEFAULT 'I'::character varying,
+    cnpj_pai character varying(14),
+    carga_id integer,
+    dt_ini date,
+    dt_fin date
+);
+
+
+--
+-- Name: reg_k200; Type: TABLE; Schema: public; Owner: -; Tablespace:
+--
+
+CREATE TABLE reg_k200 (
+    id bigint NOT NULL,
+    id_pai bigint NOT NULL,
+    acao character varying(1) DEFAULT 'I'::character varying,
+    cnpj_pai character varying(14),
+    carga_id integer,
+    dt_est date,
+    cod_item character varying(60),
+    qtd numeric(20,3),
+    ind_est character varying(1),
+    cod_part character varying(60)
+);
+
+
+--
+-- Name: reg_k220; Type: TABLE; Schema: public; Owner: -; Tablespace:
+--
+
+CREATE TABLE reg_k220 (
+    id bigint NOT NULL,
+    id_pai bigint NOT NULL,
+    acao character varying(1) DEFAULT 'I'::character varying,
+    cnpj_pai character varying(14),
+    carga_id integer,
+    dt_mov date,
+    cod_item_ori character varying(60),
+    cod_item_dest character varying(60),
+    qtd numeric(20,3)
+);
+
+
+--
+-- Name: reg_k230; Type: TABLE; Schema: public; Owner: -; Tablespace:
+--
+
+CREATE TABLE reg_k230 (
+    id bigint NOT NULL,
+    id_pai bigint NOT NULL,
+    acao character varying(1) DEFAULT 'I'::character varying,
+    cnpj_pai character varying(14),
+    carga_id integer,
+    dt_ini_op date,
+    dt_fin_op date,
+    cod_doc_op character varying(30),
+    cod_item character varying(60),
+    qtd_enc numeric(20,3)
+);
+
+
+--
+-- Name: reg_k235; Type: TABLE; Schema: public; Owner: -; Tablespace:
+--
+
+CREATE TABLE reg_k235 (
+    id bigint NOT NULL,
+    id_pai bigint NOT NULL,
+    acao character varying(1) DEFAULT 'I'::character varying,
+    cnpj_pai character varying(14),
+    carga_id integer,
+    dt_saida date,
+    cod_item character varying(60),
+    qtd numeric(20,3),
+    cod_ins_subst character varying(255)
+);
+
+
+--
+-- Name: reg_k250; Type: TABLE; Schema: public; Owner: -; Tablespace:
+--
+
+CREATE TABLE reg_k250 (
+    id bigint NOT NULL,
+    id_pai bigint NOT NULL,
+    acao character varying(1) DEFAULT 'I'::character varying,
+    cnpj_pai character varying(14),
+    carga_id integer,
+    dt_prod date,
+    cod_item character varying(60),
+    qtd numeric(20,3)
+);
+
+
+--
+-- Name: reg_k255; Type: TABLE; Schema: public; Owner: -; Tablespace:
+--
+
+CREATE TABLE reg_k255 (
+    id bigint NOT NULL,
+    id_pai bigint NOT NULL,
+    acao character varying(1) DEFAULT 'I'::character varying,
+    cnpj_pai character varying(14),
+    carga_id integer,
+    dt_cons date,
+    cod_item character varying(60),
+    qtd numeric(20,3),
+    cod_ins_subst character varying(60)
+);
+
+
+--
+-- Name: reg_k990; Type: TABLE; Schema: public; Owner: -; Tablespace:
+--
+
+CREATE TABLE reg_k990 (
+    id bigint NOT NULL,
+    id_pai bigint NOT NULL,
+    acao character varying(1) DEFAULT 'I'::character varying,
+    cnpj_pai character varying(14),
+    carga_id integer,
+    qtd_lin_k character varying(255)
+);
+
+
 ALTER TABLE ONLY reg_0000
     ADD CONSTRAINT reg_0000_pkey PRIMARY KEY (id);
 
@@ -7970,6 +8116,143 @@ CREATE INDEX reg_h020_idx_id_pai ON reg_h020 USING btree (id_pai);
 --
 
 CREATE INDEX reg_h990_idx_id_pai ON reg_h990 USING btree (id_pai);
+
+
+--
+-- Name: reg_k001_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace:
+--
+
+ALTER TABLE ONLY reg_k001
+    ADD CONSTRAINT reg_k001_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: reg_k100_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace:
+--
+
+ALTER TABLE ONLY reg_k100
+    ADD CONSTRAINT reg_k100_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: reg_k200_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace:
+--
+
+ALTER TABLE ONLY reg_k200
+    ADD CONSTRAINT reg_k200_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: reg_k220_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace:
+--
+
+ALTER TABLE ONLY reg_k220
+    ADD CONSTRAINT reg_k220_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: reg_k230_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace:
+--
+
+ALTER TABLE ONLY reg_k230
+    ADD CONSTRAINT reg_k230_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: reg_k235_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace:
+--
+
+ALTER TABLE ONLY reg_k235
+    ADD CONSTRAINT reg_k235_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: reg_k250_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace:
+--
+
+ALTER TABLE ONLY reg_k250
+    ADD CONSTRAINT reg_k250_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: reg_k255_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace:
+--
+
+ALTER TABLE ONLY reg_k255
+    ADD CONSTRAINT reg_k255_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: reg_k990_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace:
+--
+
+ALTER TABLE ONLY reg_k990
+    ADD CONSTRAINT reg_k990_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: reg_k001_idx_id_pai; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX reg_k001_idx_id_pai ON reg_k001 USING btree (id_pai);
+
+
+--
+-- Name: reg_k100_idx_id_pai; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX reg_k100_idx_id_pai ON reg_k100 USING btree (id_pai);
+
+
+--
+-- Name: reg_k200_idx_id_pai; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX reg_k200_idx_id_pai ON reg_k200 USING btree (id_pai);
+
+
+--
+-- Name: reg_k220_idx_id_pai; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX reg_k220_idx_id_pai ON reg_k220 USING btree (id_pai);
+
+
+--
+-- Name: reg_k230_idx_id_pai; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX reg_k230_idx_id_pai ON reg_k230 USING btree (id_pai);
+
+
+--
+-- Name: reg_k235_idx_id_pai; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX reg_k235_idx_id_pai ON reg_k235 USING btree (id_pai);
+
+
+--
+-- Name: reg_k250_idx_id_pai; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX reg_k250_idx_id_pai ON reg_k250 USING btree (id_pai);
+
+
+--
+-- Name: reg_k255_idx_id_pai; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX reg_k255_idx_id_pai ON reg_k255 USING btree (id_pai);
+
+
+--
+-- Name: reg_k990_idx_id_pai; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX reg_k990_idx_id_pai ON reg_k990 USING btree (id_pai);
+
+
 
 
 --
