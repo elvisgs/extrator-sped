@@ -1,12 +1,15 @@
 ## Extrator SPED
-Extrai as informações contidas em um ou mais arquivos no formato do SPED para um banco de dados SQLServer ou PostgreSQL.
+> Extrai as informações contidas em um ou mais arquivos no formato do SPED para um banco de dados SQLServer ou PostgreSQL.
 
 ### Requisitos
 - ruby 2.x
 
 ### Instalação
-- `$ gem install bundler` (caso o bundler não esteja instalado)
-- `$ bundle install`
+```shell
+$ cd extrator-sped
+$ gem install bundler # caso o bundler não esteja instalado
+$ bundle install
+```
 
 ### Configuração
 - Renomeie o arquivo `config/database-template.yml` para `config/database.yml` e configure-o de acordo com seus bancos de dados
@@ -14,7 +17,9 @@ Extrai as informações contidas em um ou mais arquivos no formato do SPED para 
 - Caso o caminho não seja informado como argumento, os arquivos a serem extraídos devem ser copiados para a pasta `sped`
 
 ### Modo de usar
-`$ ruby extrair.rb <nome_BD> [tipo_arquivo] [caminho_sped]`
+```shell
+$ ruby extrair.rb <nome_BD> [tipo_arquivo] [caminho_sped]
+```
 - `nome_BD`: um identificador de sua escolha para o BD
 - `tipo_arquivo`: os valores possíveis são *fiscal* (*default*), *contrib* ou *ecf*
 - `caminho_sped`: caminho absoluto de um arquivo ou diretório com arquivos SPED (default: ./sped)
