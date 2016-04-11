@@ -11,7 +11,13 @@ class Registro
     @valores = dividir_linha_em_valores linha
     @nome = @valores.shift
     @bloco = @nome[0]
-    @pai = @@blocos[@bloco][@nome]['pai']
+
+    if @@blocos.key? @bloco and @@blocos[@bloco].key? @nome
+      @pai = @@blocos[@bloco][@nome]['pai']
+    else
+      raise "Bloco #{@bloco} ou registro #{@nome} nao suportado"
+    end
+
     @campos = @@blocos[@bloco][@nome]['campos']
 
     corrigir_caracteres_especiais

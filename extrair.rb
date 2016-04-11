@@ -120,6 +120,7 @@ Sequel.connect($config) do |db|
 
         linha = sped.readline
       rescue
+        progressbar.stop
         puts linha
         raise
         break
