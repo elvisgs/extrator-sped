@@ -44,10 +44,16 @@ if $nome_bd
     .sub('@data_dir@', $data_dir)
     .sub('@layout@', $layout.to_s)
 
-  puts 'Criando banco de dados...'
-  system create_db_cmd or exit 1
-
   $config['database'] = $nome_bd
+  Sequel.connect($config) do |db|
+    begin
+      puts 'O banco de dados já existe. A carga será complementada.' if db.test_connection == true
+    rescue
+      puts 'Criando banco de dados...'
+      system create_db_cmd or exit 1
+      puts 'Banco de dados criado.'
+    end
+  end
 else
   puts 'Informe o nome do banco de dados'
   mostrar_uso
