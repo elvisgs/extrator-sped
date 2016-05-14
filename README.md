@@ -25,6 +25,5 @@ $ ruby extrair.rb <nome_BD> [tipo_arquivo] [caminho_sped]
 - `caminho_sped`: caminho absoluto de um arquivo ou diretório com arquivos SPED (default: ./sped)
 
 ### TODO
-- Script para criação de BD do SPED Contrib no Postgres
 - Script para criação de BD do SPED ECF no Postgres
 - Carregar vários arquivos em paralelo

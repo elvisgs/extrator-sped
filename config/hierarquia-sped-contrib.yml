@@ -1444,6 +1444,18 @@
       - "num_doc"
       - "descr_aj"
       - "dt_ref"
+  "M115":
+    nivel: 4
+    pai: "M110"
+    campos:
+      - "det_valor_aj"
+      - "cst_pis"
+      - "det_bc_cred"
+      - "det_aliq"
+      - "dt_oper_aj"
+      - "desc_aj"
+      - "cod_cta"
+      - "info_compl"
   "M200":
     nivel: 2
     pai: "M001"
@@ -1589,6 +1601,18 @@
       - "num_doc"
       - "descr_aj"
       - "dt_ref"
+  "M515":
+    nivel: 4
+    pai: "M510"
+    campos:
+      - "det_valor_aj"
+      - "cst_cofins"
+      - "det_bc_cred"
+      - "det_aliq"
+      - "dt_oper_aj"
+      - "desc_aj"
+      - "cod_cta"
+      - "info_compl"
   "M600":
     nivel: 2
     pai: "M001"
