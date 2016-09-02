@@ -367,6 +367,27 @@
       - "aliq_cofins_quant"
       - "vl_cofins"
       - "cod_cta"
+  "C175":
+    nivel: 4
+    pai: "C100"
+    campos:
+      - "cfop"
+      - "vl_oper"
+      - "vl_desc"
+      - "cst_pis"
+      - "vl_bc_pis"
+      - "aliq_pis"
+      - "quant_bc_pis"
+      - "aliq_pis_quant"
+      - "vl_pis"
+      - "cst_cofins"
+      - "vl_bc_cofins"
+      - "aliq_cofins"
+      - "quant_bc_cofins"
+      - "aliq_cofins_quant"
+      - "vl_cofins"
+      - "cod_cta"
+      - "info_compl"
   "C180":
     nivel: 3
     pai: "C010"
@@ -717,6 +738,55 @@
   "C609":
     nivel: 4
     pai: "C600"
+    campos:
+      - "num_proc"
+      - "ind_proc"
+  "C860":
+    nivel: 3
+    pai: "C010"
+    campos:
+      - "cod_mod"
+      - "nr_sat"
+      - "dt_doc"
+      - "doc_ini"
+      - "doc_fim"
+  "C870":
+    nivel: 4
+    pai: "C860"
+    campos:
+      - "cod_item"
+      - "cfop"
+      - "vl_item"
+      - "vl_desc"
+      - "cst_pis"
+      - "vl_bc_pis"
+      - "aliq_pis"
+      - "vl_pis"
+      - "cst_cofins"
+      - "vl_bc_cofins"
+      - "aliq_cofins"
+      - "vl_cofins"
+      - "cod_cta"
+  "C880":
+    nivel: 4
+    pai: "C860"
+    campos:
+      - "cod_item"
+      - "cfop"
+      - "vl_item"
+      - "vl_desc"
+      - "cst_pis"
+      - "quant_bc_pis"
+      - "aliq_pis_quant"
+      - "vl_pis"
+      - "cst_cofins"
+      - "quant_bc_cofins"
+      - "aliq_cofins_quant"
+      - "vl_cofins"
+      - "cod_cta"
+  "C890":
+    nivel: 4
+    pai: "C860"
     campos:
       - "num_proc"
       - "ind_proc"
@@ -1359,6 +1429,12 @@
       - "aliq_cofins"
       - "vl_cofins"
       - "inf_comp"
+  "I199":
+    nivel: 4
+    pai: "I100"
+    campos:
+      - "num_proc"
+      - "ind_proc"
   "I200":
     nivel: 4
     pai: "I100"
@@ -1368,6 +1444,12 @@
       - "vl_det"
       - "cod_cta"
       - "inf_comp"
+  "I299":
+    nivel: 5
+    pai: "I200"
+    campos:
+      - "num_proc"
+      - "ind_proc"
   "I300":
     nivel: 5
     pai: "I200"
@@ -1379,18 +1461,6 @@
   "I399":
     nivel: 6
     pai: "I300"
-    campos:
-      - "num_proc"
-      - "ind_proc"
-  "I299":
-    nivel: 5
-    pai: "I200"
-    campos:
-      - "num_proc"
-      - "ind_proc"
-  "I199":
-    nivel: 4
-    pai: "I100"
     campos:
       - "num_proc"
       - "ind_proc"
@@ -1514,6 +1584,18 @@
       - "num_doc"
       - "descr_aj"
       - "dt_ref"
+  "M225":
+    nivel: 5
+    pai: "M220"
+    campos:
+      - "det_valor_aj"
+      - "cst_pis"
+      - "det_bc_cred"
+      - "det_aliq"
+      - "dt_oper_aj"
+      - "desc_aj"
+      - "cod_cta"
+      - "info_compl"
   "M230":
     nivel: 4
     pai: "M210"
@@ -1671,6 +1753,18 @@
       - "num_doc"
       - "descr_aj"
       - "dt_ref"
+  "M625":
+    nivel: 5
+    pai: "M620"
+    campos:
+      - "det_valor_aj"
+      - "cst_cofins"
+      - "det_bc_cred"
+      - "det_aliq"
+      - "dt_oper_aj"
+      - "desc_aj"
+      - "cod_cta"
+      - "info_compl"
   "M630":
     nivel: 4
     pai: "M610"
@@ -1873,6 +1967,12 @@
       - "vl_rec_uni"
       - "dt_rec_uni"
       - "cod_rec"
+  "1809":
+    nivel: 3
+    pai: "1800"
+    campos:
+      - "num_proc"
+      - "ind_proc"
   "1900":
     nivel: 2
     campos:
