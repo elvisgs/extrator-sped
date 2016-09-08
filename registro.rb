@@ -9,7 +9,7 @@ class Registro
   def initialize(linha, layout = :fiscal)
     @@blocos ||= YAML.load_file("config/hierarquia-sped-#{layout}.yml")
     @valores = dividir_linha_em_valores linha
-    @nome = @valores.shift
+    @nome = @valores.shift.upcase
     @bloco = @nome[0]
 
     if @@blocos.key? @bloco and @@blocos[@bloco].key? @nome
