@@ -5,6 +5,7 @@ require 'ruby-progressBar'
 require 'sequel'
 require 'yaml'
 require_relative 'registro'
+require_relative 'db_creator'
 
 def mostrar_uso
   puts 'Uso: ruby extrair.rb <nome_bd> [fiscal|contrib|ecf] [caminho_sped]'
@@ -33,35 +34,23 @@ if not $caminho.nil? and not (File.file?($caminho) or File.directory?($caminho))
 end
 
 if $nome_bd
-  create_db_cmd = $config['create_db_cmd']
-  if not create_db_cmd
-    puts 'Script de criação do BD não encontrado para o adapter informado'
-    exit 1
+  bd_sped = DbCreator.new($config, $nome_bd, $sgbd.to_sym, $layout)
+
+  if not  bd_sped.exists? then
+    puts 'Criando banco de dados...'
+    bd_sped.create
+    puts 'Banco de dados criado.'
+  else
+    puts 'O banco de dados já existe. A carga será complementada.'
   end
 
-  create_db_cmd = create_db_cmd
-    .sub('@db_name@', $nome_bd)
-    .sub('@data_dir@', $data_dir)
-    .sub('@layout@', $layout.to_s)
-
-  $config['database'] = $nome_bd
-  Sequel.connect($config) do |db|
-    begin
-      puts 'O banco de dados já existe. A carga será complementada.' if db.test_connection == true
-    rescue
-      puts 'Criando banco de dados...'
-      system create_db_cmd or exit 1
-      puts 'Banco de dados criado.'
-    end
-  end
+  $config[:database] = $nome_bd
 else
   puts 'Informe o nome do banco de dados'
   mostrar_uso
 end
 
-
 $chaves = {}
-
 $cont = 0
 
 Sequel.connect($config) do |db|
@@ -137,6 +126,8 @@ Sequel.connect($config) do |db|
     $cont += 1
     progressbar.finish
   end
+
+  db.run 'drop table schema_info'
 
   puts "\n#{$cont} arquivo(s) processado(s)."
 end
