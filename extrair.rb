@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 require 'find'
-require 'ruby-progressBar'
+require 'ruby-progressbar'
 require 'sequel'
 require 'yaml'
 require_relative 'registro'
@@ -11,10 +11,6 @@ require_relative 'utils'
 def mostrar_uso
   puts 'Uso: ruby extrair.rb <nome_bd> [fiscal|contrib] [caminho_sped]'
   exit 1
-end
-
-if ARGV.size < 3
-  mostrar_uso
 end
 
 $cwd = File.dirname(__FILE__)
@@ -34,7 +30,7 @@ end
 
 $versao = Utils.detect_version(Find.find($caminho).first(2).last)
 versoes_validas = Registro.versoes[$layout]
-if not versoes_validas.include? $versao
+unless versoes_validas.include? $versao
   puts "Versão #{$versao} é inválida para o layout '#{$layout}'. As versões válidas são: #{versoes_validas.join(', ')}"
   exit 1
 end
@@ -42,7 +38,7 @@ end
 if $nome_bd
   bd_sped = DbCreator.new($config, $nome_bd, $sgbd.to_sym, $layout, $versao)
 
-  if not bd_sped.exists? then
+  if not bd_sped.exists?
     puts 'Criando banco de dados...'
     bd_sped.create
     puts 'Banco de dados criado.'
@@ -61,7 +57,7 @@ $cont = 0
 
 Sequel.connect($config) do |db|
   $caminho ||= $cwd + '/sped'
-  num_arquivos = if File.file?($caminho) then 1 else Dir.glob($caminho + '/*.txt').count end
+  num_arquivos = File.file?($caminho) ? 1 : Dir.glob($caminho + '/*.txt').count
 
   Find.find($caminho).each do |f|
     next if not File.file?(f) or File.zero?(f)
@@ -70,7 +66,7 @@ Sequel.connect($config) do |db|
 
     total_linhas = Utils.count_lines f
 
-    progressbar = ProgressBar.create(:title => 'Progresso', :format => "[%B] %p%%")
+    progressbar = ProgressBar.create(:title => 'Progresso', :format => '[%B] %p%%')
 
     cnpj = Utils.detect_cnpj f, $layout
 
@@ -88,7 +84,7 @@ Sequel.connect($config) do |db|
         end
 
         registro = Registro.new linha, $layout, $versao
-        tabela = "reg_#{registro.nome}".downcase
+        tabela = "reg_#{registro.nome}".downcase.to_sym
 
         if $layout == :contrib
           if registro.pai == '0001'
@@ -104,20 +100,16 @@ Sequel.connect($config) do |db|
 
         id = $chaves[registro.nome]
         if id == nil
-          db.fetch "select coalesce(max(id), 0) id from #{tabela}" do |row|
-            id = Integer(row[:id])
-          end
+          id = db[tabela].select{coalesce(max(:id), 0).as(:id)}.first[:id]
         end
         id += 1
         $chaves[registro.nome] = id
 
-        id_pai = $chaves[registro.pai] || ($layout == :contrib ? '1' : 'null')
+        id_pai = $chaves[registro.pai] || ($layout == :contrib ? '1' : nil)
 
-        colunas = 'id, id_pai, "' << registro.campos.join('", "') << '", cnpj_pai'
-        valores = "'" << registro.valores.join("', '") << "'"
-        valores.gsub!("''", 'null')
+        valores = {:id => id, :id_pai => id_pai, :cnpj_pai => cnpj}.merge registro.to_h
 
-        db.run "insert into #{tabela}(#{colunas}) values(#{id}, #{id_pai}, #{valores}, '#{cnpj}');"
+        db[tabela].insert valores
 
         linha = sped.readline
       rescue
@@ -133,7 +125,7 @@ Sequel.connect($config) do |db|
     progressbar.finish
   end
 
-  db.run 'drop table schema_info'
+  db.drop_table? :schema_info
 
   puts "\n#{$cont} arquivo(s) processado(s)."
 end

@@ -7,8 +7,8 @@ class Registro
   @@metadados = nil
 
   @@versoes = {
-    :fiscal => ['009', '010', '011'],
-    :contrib => ['002', '003']
+    :fiscal => %w(009 010 011),
+    :contrib => %w(002 003)
   }
 
   def initialize(linha, layout = :fiscal, versao)
@@ -20,7 +20,7 @@ class Registro
     @nome = @valores.shift.upcase
     @bloco = @nome[0]
 
-    if not @@metadados.key? @nome
+    unless @@metadados.key? @nome
       raise "Registro #{@nome} nao suportado"
     end
 
@@ -33,6 +33,11 @@ class Registro
 
   def self.versoes
     @@versoes
+  end
+
+  def to_h
+    valores = @valores.map {|v| v.empty? ? nil : v}
+    @campos.map(&:to_sym).zip(valores).to_h
   end
 
   private

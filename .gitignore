@@ -2,3 +2,4 @@ config/database.yml
 *.zip
 Gemfile.lock
 sped/*.txt
+.idea/
