@@ -6,7 +6,7 @@ Sequel.extension :migration
 class DbCreator
 
   @@default_databases = {
-    :postgres => 'template1', 
+    :postgres => 'template1',
     :mssql => 'master'
   }
 
@@ -19,15 +19,13 @@ class DbCreator
   end
 
   def exists?
-    begin
-      config = @db_config.clone
-      config[:database] = @db_name
-      
-      db = Sequel.connect(config)
-      db.test_connection == true
-    rescue
-      false
-    end
+    config = @db_config.clone
+    config[:database] = @db_name
+
+    db = Sequel.connect(config)
+    db.test_connection == true
+  rescue
+    false
   end
 
   def create
@@ -37,7 +35,7 @@ class DbCreator
     Sequel.connect(config) do |db|
       db.run "create database #{@db_name}"
     end
-    
+
     config[:database] = @db_name
 
     Sequel.connect(config) do |db|

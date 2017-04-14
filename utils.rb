@@ -18,4 +18,12 @@ class Utils
     fields = line.split('|')
     layout == :contrib ? '' : fields[7]
   end
+
+  def self.count_lines(file_path)
+    #linux
+    `wc -l "#{file_path}"`.strip.split(' ')[0].to_i
+  rescue
+    #windows
+    `find /v /c "" "#{file_path}"`.strip.split(' ').last.to_i
+  end
 end

@@ -17,12 +17,6 @@ if ARGV.size < 3
   mostrar_uso
 end
 
-def contar_linhas(file)
-  `wc -l "#{file}"`.strip.split(' ')[0].to_i
-rescue
-  `find /v /c "" "#{file}"`.strip.split(' ').last.to_i
-end
-
 $cwd = File.dirname(__FILE__)
 
 $sgbd = ENV['SGBD_EXTRACAO'] || 'postgres' # mssql|postgres
@@ -48,7 +42,7 @@ end
 if $nome_bd
   bd_sped = DbCreator.new($config, $nome_bd, $sgbd.to_sym, $layout, $versao)
 
-  if not  bd_sped.exists? then
+  if not bd_sped.exists? then
     puts 'Criando banco de dados...'
     bd_sped.create
     puts 'Banco de dados criado.'
@@ -74,7 +68,7 @@ Sequel.connect($config) do |db|
 
     puts ("\n[%03d/%03d] %s" % [$cont + 1, num_arquivos, File.basename(f)])
 
-    total_linhas = contar_linhas f
+    total_linhas = Utils.count_lines f
 
     progressbar = ProgressBar.create(:title => 'Progresso', :format => "[%B] %p%%")
 
