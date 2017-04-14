@@ -6,10 +6,15 @@ require 'sequel'
 require 'yaml'
 require_relative 'registro'
 require_relative 'db_creator'
+require_relative 'utils'
 
 def mostrar_uso
-  puts 'Uso: ruby extrair.rb <nome_bd> [fiscal|contrib|ecf] [caminho_sped]'
+  puts 'Uso: ruby extrair.rb <nome_bd> [fiscal|contrib] [caminho_sped]'
   exit 1
+end
+
+if ARGV.size < 3
+  mostrar_uso
 end
 
 def contar_linhas(file)
@@ -33,8 +38,15 @@ if not $caminho.nil? and not (File.file?($caminho) or File.directory?($caminho))
   mostrar_uso
 end
 
+$versao = Utils.detect_version(Find.find($caminho).first(2).last)
+versoes_validas = Registro.versoes[$layout]
+if not versoes_validas.include? $versao
+  puts "Versão #{$versao} é inválida para o layout '#{$layout}'. As versões válidas são: #{versoes_validas.join(', ')}"
+  exit 1
+end
+
 if $nome_bd
-  bd_sped = DbCreator.new($config, $nome_bd, $sgbd.to_sym, $layout)
+  bd_sped = DbCreator.new($config, $nome_bd, $sgbd.to_sym, $layout, $versao)
 
   if not  bd_sped.exists? then
     puts 'Criando banco de dados...'
@@ -66,13 +78,13 @@ Sequel.connect($config) do |db|
 
     progressbar = ProgressBar.create(:title => 'Progresso', :format => "[%B] %p%%")
 
+    cnpj = Utils.detect_cnpj f, $layout
+
     sped = File.open(f, 'r:CP850:UTF-8')
 
     linha = sped.readline
 
     next if sped.eof?
-
-    cnpj = $layout == :contrib ? '' : linha.split('|')[7]
 
     db.transaction do
       begin
@@ -81,7 +93,7 @@ Sequel.connect($config) do |db|
           progressbar.progress = progresso
         end
 
-        registro = Registro.new linha, $layout
+        registro = Registro.new linha, $layout, $versao
         tabela = "reg_#{registro.nome}".downcase
 
         if $layout == :contrib

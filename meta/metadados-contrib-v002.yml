@@ -1,0 +1,1985 @@
+"0000":
+  nivel: 0
+  campos:
+    - "cod_ver"
+    - "tipo_escrit"
+    - "ind_sit_esp"
+    - "num_rec_anterior"
+    - "dt_ini"
+    - "dt_fin"
+    - "nome"
+    - "cnpj"
+    - "uf"
+    - "cod_mun"
+    - "suframa"
+    - "ind_nat_pj"
+    - "ind_ativ"
+
+"0001":
+  nivel: 1
+  pai: "0000"
+  campos:
+    - "ind_mov"
+
+"0100":
+  nivel: 2
+  pai: "0001"
+  campos:
+    - "nome"
+    - "cpf"
+    - "crc"
+    - "cnpj"
+    - "cep"
+    - "end"
+    - "num"
+    - "compl"
+    - "bairro"
+    - "fone"
+    - "fax"
+    - "email"
+    - "cod_mun"
+
+"0110":
+  nivel: 2
+  pai: "0001"
+  campos:
+    - "cod_inc_trib"
+    - "ind_apro_cred"
+    - "cod_tipo_cont"
+
+"0111":
+  nivel: 3
+  pai: "0110"
+  campos:
+    - "rec_bru_ncum_trib_mi"
+    - "rec_bru_ncum_nt_mi"
+    - "rec_bru_ncum_exp"
+    - "rec_bru_cum"
+    - "rec_bru_total"
+
+"0120":
+  nivel: 2
+  pai: "0001"
+  campos:
+    - "mes_dispensa"
+    - "inf_comp"
+
+"0140":
+  nivel: 2
+  pai: "0001"
+  campos:
+    - "cod_est"
+    - "nome"
+    - "cnpj"
+    - "uf"
+    - "ie"
+    - "cod_mun"
+    - "im"
+    - "suframa"
+
+"0145":
+  nivel: 3
+  pai: "0140"
+  campos:
+    - "cod_inc_trib"
+    - "vl_rec_tot"
+    - "vl_rec_ativ"
+    - "vl_rec_demais_ativ"
+    - "info_compl"
+
+"0150":
+  nivel: 3
+  pai: "0140"
+  campos:
+    - "cod_part"
+    - "nome"
+    - "cod_pais"
+    - "cnpj"
+    - "cpf"
+    - "ie"
+    - "cod_mun"
+    - "suframa"
+    - "end"
+    - "num"
+    - "compl"
+    - "bairro"
+
+"0190":
+  nivel: 3
+  pai: "0140"
+  campos:
+    - "unid"
+    - "descr"
+
+"0200":
+  nivel: 3
+  pai: "0140"
+  campos:
+    - "cod_item"
+    - "descr_item"
+    - "cod_barra"
+    - "cod_ant_item"
+    - "unid_inv"
+    - "tipo_item"
+    - "cod_ncm"
+    - "ex_ipi"
+    - "cod_gen"
+    - "cod_lst"
+    - "aliq_icms"
+
+"0205":
+  nivel: 4
+  pai: "0200"
+  campos:
+    - "descr_ant_item"
+    - "dt_ini"
+    - "dt_fim"
+    - "cod_ant_item"
+
+"0206":
+  nivel: 4
+  pai: "0200"
+  campos:
+    - "cod_comb"
+
+"0208":
+  nivel: 4
+  pai: "0200"
+  campos:
+    - "cod_tab"
+    - "cod_gru"
+    - "marca_com"
+
+"0400":
+  nivel: 3
+  pai: "0140"
+  campos:
+    - "cod_nat"
+    - "descr_nat"
+
+"0450":
+  nivel: 3
+  pai: "0140"
+  campos:
+    - "cod_inf"
+    - "txt"
+
+"0500":
+  nivel: 2
+  pai: "0001"
+  campos:
+    - "dt_alt"
+    - "cod_nat_cc"
+    - "ind_cta"
+    - "nivel"
+    - "cod_cta"
+    - "nome_cta"
+    - "cod_cta_ref"
+    - "cnpj_est"
+
+"0600":
+  nivel: 2
+  pai: "0001"
+  campos:
+    - "dt_alt"
+    - "cod_ccus"
+    - "ccus"
+
+"0990":
+  nivel: 1
+  pai: "0000"
+  campos:
+    - "qtd_lin_0"
+
+"1001":
+  nivel: 1
+  pai: "0000"
+  campos:
+    - "ind_mov"
+
+"1010":
+  nivel: 2
+  pai: "1001"
+  campos:
+    - "num_proc"
+    - "id_sec_jud"
+    - "id_vara"
+    - "ind_nat_acao"
+    - "desc_dec_jud"
+    - "dt_sent_jud"
+
+"1020":
+  nivel: 2
+  pai: "1001"
+  campos:
+    - "num_proc"
+    - "ind_nat_acao"
+    - "dt_dec_adm"
+
+"1100":
+  nivel: 2
+  pai: "1001"
+  campos:
+    - "per_apu_cred"
+    - "orig_cred"
+    - "cnpj_suc"
+    - "cod_cred"
+    - "vl_cred_apu"
+    - "vl_cred_ext_apu"
+    - "vl_tot_cred_apu"
+    - "vl_cred_desc_pa_ant"
+    - "vl_cred_per_pa_ant"
+    - "vl_cred_dcomp_pa_ant"
+    - "sd_cred_disp_efd"
+    - "vl_cred_desc_efd"
+    - "vl_cred_per_efd"
+    - "vl_cred_dcomp_efd"
+    - "vl_cred_trans"
+    - "vl_cred_out"
+    - "sld_cred_fim"
+
+"1101":
+  nivel: 3
+  pai: "1100"
+  campos:
+    - "cod_part"
+    - "cod_item"
+    - "cod_mod"
+    - "ser"
+    - "sub_ser"
+    - "num_doc"
+    - "dt_oper"
+    - "chv_nfe"
+    - "vl_oper"
+    - "cfop"
+    - "nat_bc_cred"
+    - "ind_orig_cred"
+    - "cst_pis"
+    - "vl_bc_pis"
+    - "aliq_pis"
+    - "vl_pis"
+    - "cod_cta"
+    - "cod_ccus"
+    - "desc_compl"
+    - "per_escrit"
+    - "cnpj"
+
+"1102":
+  nivel: 4
+  pai: "1101"
+  campos:
+    - "vl_cred_pis_trib_mi"
+    - "vl_cred_pis_nt_mi"
+    - "vl_cred_pis_exp"
+
+"1200":
+  nivel: 2
+  pai: "1001"
+  campos:
+    - "per_apur_ant"
+    - "nat_cont_rec"
+    - "vl_cont_apur"
+    - "vl_cred_pis_desc"
+    - "vl_cont_dev"
+    - "vl_out_ded"
+    - "vl_cont_ext"
+    - "vl_mul"
+    - "vl_jur"
+    - "dt_recol"
+
+"1210":
+  nivel: 3
+  pai: "1200"
+  campos:
+    - "cnpj"
+    - "cst_pis"
+    - "cod_part"
+    - "dt_oper"
+    - "vl_oper"
+    - "vl_bc_pis"
+    - "aliq_pis"
+    - "vl_pis"
+    - "cod_cta"
+    - "desc_compl"
+
+"1220":
+  nivel: 3
+  pai: "1200"
+  campos:
+    - "per_apu_cred"
+    - "orig_cred"
+    - "cod_cred"
+    - "vl_cred"
+
+"1300":
+  nivel: 2
+  pai: "1001"
+  campos:
+    - "ind_nat_ret"
+    - "pr_rec_ret"
+    - "vl_ret_apu"
+    - "vl_ret_ded"
+    - "vl_ret_per"
+    - "vl_ret_dcomp"
+    - "sld_ret"
+
+"1500":
+  nivel: 2
+  pai: "1001"
+  campos:
+    - "per_apu_cred"
+    - "orig_cred"
+    - "cnpj_suc"
+    - "cod_cred"
+    - "vl_cred_apu"
+    - "vl_cred_ext_apu"
+    - "vl_tot_cred_apu"
+    - "vl_cred_desc_pa_ant"
+    - "vl_cred_per_pa_ant"
+    - "vl_cred_dcomp_pa_ant"
+    - "sd_cred_disp_efd"
+    - "vl_cred_desc_efd"
+    - "vl_cred_per_efd"
+    - "vl_cred_dcomp_efd"
+    - "vl_cred_trans"
+    - "vl_cred_out"
+    - "sld_cred_fim"
+
+"1501":
+  nivel: 3
+  pai: "1500"
+  campos:
+    - "cod_part"
+    - "cod_item"
+    - "cod_mod"
+    - "ser"
+    - "sub_ser"
+    - "num_doc"
+    - "dt_oper"
+    - "chv_nfe"
+    - "vl_oper"
+    - "cfop"
+    - "nat_bc_cred"
+    - "ind_orig_cred"
+    - "cst_cofins"
+    - "vl_bc_cofins"
+    - "aliq_cofins"
+    - "vl_cofins"
+    - "cod_cta"
+    - "cod_ccus"
+    - "desc_compl"
+    - "per_escrit"
+    - "cnpj"
+
+"1502":
+  nivel: 4
+  pai: "1501"
+  campos:
+    - "vl_cred_cofins_trib_mi"
+    - "vl_cred_cofins_nt_mi"
+    - "vl_cred_cofins_exp"
+
+"1600":
+  nivel: 2
+  pai: "1001"
+  campos:
+    - "per_apur_ant"
+    - "nat_cont_rec"
+    - "vl_cont_apur"
+    - "vl_cred_cofins_desc"
+    - "vl_cont_dev"
+    - "vl_out_ded"
+    - "vl_cont_ext"
+    - "vl_mul"
+    - "vl_jur"
+    - "dt_recol"
+
+"1610":
+  nivel: 3
+  pai: "1600"
+  campos:
+    - "cnpj"
+    - "cst_cofins"
+    - "cod_part"
+    - "dt_oper"
+    - "vl_oper"
+    - "vl_bc_cofins"
+    - "aliq_cofins"
+    - "vl_cofins"
+    - "cod_cta"
+    - "desc_compl"
+
+"1620":
+  nivel: 3
+  pai: "1600"
+  campos:
+    - "per_apu_cred"
+    - "orig_cred"
+    - "cod_cred"
+    - "vl_cred"
+
+"1700":
+  nivel: 2
+  pai: "1001"
+  campos:
+    - "ind_nat_ret"
+    - "pr_rec_ret"
+    - "vl_ret_apu"
+    - "vl_ret_ded"
+    - "vl_ret_per"
+    - "vl_ret_dcomp"
+    - "sld_ret"
+
+"1800":
+  nivel: 2
+  pai: "1001"
+  campos:
+    - "inc_imob"
+    - "rec_receb_ret"
+    - "rec_fin_ret"
+    - "bc_ret"
+    - "aliq_ret"
+    - "vl_rec_uni"
+    - "dt_rec_uni"
+    - "cod_rec"
+
+"1809":
+  nivel: 3
+  pai: "1800"
+  campos:
+    - "num_proc"
+    - "ind_proc"
+
+"1990":
+  nivel: 1
+  pai: "0000"
+  campos:
+    - "qtd_lin_1"
+
+"9001":
+  nivel: 1
+  pai: "0000"
+  campos:
+    - "ind_mov"
+
+"9900":
+  nivel: 2
+  pai: "9001"
+  campos:
+    - "reg_blc"
+    - "qtd_reg_blc"
+
+"9990":
+  nivel: 1
+  pai: "0000"
+  campos:
+    - "qtd_lin_9"
+
+"9999":
+  nivel: 0
+  campos:
+    - "qtd_lin"
+
+"A001":
+  nivel: 1
+  pai: "0000"
+  campos:
+    - "ind_mov"
+
+"A010":
+  nivel: 2
+  pai: "A001"
+  campos:
+    - "cnpj"
+
+"A100":
+  nivel: 3
+  pai: "A010"
+  campos:
+    - "ind_oper"
+    - "ind_emit"
+    - "cod_part"
+    - "cod_sit"
+    - "ser"
+    - "sub"
+    - "num_doc"
+    - "chv_nfse"
+    - "dt_doc"
+    - "dt_exe_serv"
+    - "vl_doc"
+    - "ind_pgto"
+    - "vl_desc"
+    - "vl_bc_pis"
+    - "vl_pis"
+    - "vl_bc_cofins"
+    - "vl_cofins"
+    - "vl_pis_ret"
+    - "vl_cofins_ret"
+    - "vl_iss"
+
+"A110":
+  nivel: 4
+  pai: "A100"
+  campos:
+    - "cod_inf"
+    - "txt_compl"
+
+"A111":
+  nivel: 4
+  pai: "A100"
+  campos:
+    - "num_proc"
+    - "ind_proc"
+
+"A120":
+  nivel: 4
+  pai: "A100"
+  campos:
+    - "vl_tot_serv"
+    - "vl_bc_pis"
+    - "vl_pis_imp"
+    - "dt_pag_pis"
+    - "vl_bc_cofins"
+    - "vl_cofins_imp"
+    - "dt_pag_cofins"
+    - "loc_exe_serv"
+
+"A170":
+  nivel: 4
+  pai: "A100"
+  campos:
+    - "num_item"
+    - "cod_item"
+    - "descr_compl"
+    - "vl_item"
+    - "vl_desc"
+    - "nat_bc_cred"
+    - "ind_orig_cred"
+    - "cst_pis"
+    - "vl_bc_pis"
+    - "aliq_pis"
+    - "vl_pis"
+    - "cst_cofins"
+    - "vl_bc_cofins"
+    - "aliq_cofins"
+    - "vl_cofins"
+    - "cod_cta"
+    - "cod_ccus"
+
+"A990":
+  nivel: 1
+  pai: "0000"
+  campos:
+    - "qtd_lin_a"
+
+"C001":
+  nivel: 1
+  pai: "0000"
+  campos:
+    - "ind_mov"
+
+"C010":
+  nivel: 2
+  pai: "C001"
+  campos:
+    - "cnpj"
+    - "ind_escri"
+
+"C100":
+  nivel: 3
+  pai: "C010"
+  campos:
+    - "ind_oper"
+    - "ind_emit"
+    - "cod_part"
+    - "cod_mod"
+    - "cod_sit"
+    - "ser"
+    - "num_doc"
+    - "chv_nfe"
+    - "dt_doc"
+    - "dt_e_s"
+    - "vl_doc"
+    - "ind_pgto"
+    - "vl_desc"
+    - "vl_abat_nt"
+    - "vl_merc"
+    - "ind_frt"
+    - "vl_frt"
+    - "vl_seg"
+    - "vl_out_da"
+    - "vl_bc_icms"
+    - "vl_icms"
+    - "vl_bc_icms_st"
+    - "vl_icms_st"
+    - "vl_ipi"
+    - "vl_pis"
+    - "vl_cofins"
+    - "vl_pis_st"
+    - "vl_cofins_st"
+
+"C110":
+  nivel: 4
+  pai: "C100"
+  campos:
+    - "cod_inf"
+    - "txt_compl"
+
+"C111":
+  nivel: 4
+  pai: "C100"
+  campos:
+    - "num_proc"
+    - "ind_proc"
+
+"C120":
+  nivel: 4
+  pai: "C100"
+  campos:
+    - "cod_doc_imp"
+    - "num_doc_imp"
+    - "vl_pis_imp"
+    - "vl_cofins_imp"
+    - "num_acdraw"
+
+"C170":
+  nivel: 4
+  pai: "C100"
+  campos:
+    - "num_item"
+    - "cod_item"
+    - "descr_compl"
+    - "qtd"
+    - "unid"
+    - "vl_item"
+    - "vl_desc"
+    - "ind_mov"
+    - "cst_icms"
+    - "cfop"
+    - "cod_nat"
+    - "vl_bc_icms"
+    - "aliq_icms"
+    - "vl_icms"
+    - "vl_bc_icms_st"
+    - "aliq_st"
+    - "vl_icms_st"
+    - "ind_apur"
+    - "cst_ipi"
+    - "cod_enq"
+    - "vl_bc_ipi"
+    - "aliq_ipi"
+    - "vl_ipi"
+    - "cst_pis"
+    - "vl_bc_pis"
+    - "aliq_pis"
+    - "quant_bc_pis"
+    - "aliq_pis_quant"
+    - "vl_pis"
+    - "cst_cofins"
+    - "vl_bc_cofins"
+    - "aliq_cofins"
+    - "quant_bc_cofins"
+    - "aliq_cofins_quant"
+    - "vl_cofins"
+    - "cod_cta"
+
+"C180":
+  nivel: 3
+  pai: "C010"
+  campos:
+    - "cod_mod"
+    - "dt_doc_ini"
+    - "dt_doc_fin"
+    - "cod_item"
+    - "cod_ncm"
+    - "ex_ipi"
+    - "vl_tot_item"
+
+"C181":
+  nivel: 4
+  pai: "C180"
+  campos:
+    - "cst_pis"
+    - "cfop"
+    - "vl_item"
+    - "vl_desc"
+    - "vl_bc_pis"
+    - "aliq_pis"
+    - "quant_bc_pis"
+    - "aliq_pis_quant"
+    - "vl_pis"
+    - "cod_cta"
+
+"C185":
+  nivel: 4
+  pai: "C180"
+  campos:
+    - "cst_cofins"
+    - "cfop"
+    - "vl_item"
+    - "vl_desc"
+    - "vl_bc_cofins"
+    - "aliq_cofins"
+    - "quant_bc_cofins"
+    - "aliq_cofins_quant"
+    - "vl_cofins"
+    - "cod_cta"
+
+"C188":
+  nivel: 4
+  pai: "C180"
+  campos:
+    - "num_proc"
+    - "ind_proc"
+
+"C190":
+  nivel: 3
+  pai: "C010"
+  campos:
+    - "cod_mod"
+    - "dt_ref_ini"
+    - "dt_ref_fin"
+    - "cod_item"
+    - "cod_ncm"
+    - "ex_ipi"
+    - "vl_tot_item"
+
+"C191":
+  nivel: 4
+  pai: "C190"
+  campos:
+    - "cnpj_cpf_part"
+    - "cst_pis"
+    - "cfop"
+    - "vl_item"
+    - "vl_desc"
+    - "vl_bc_pis"
+    - "aliq_pis"
+    - "quant_bc_pis"
+    - "aliq_pis_quant"
+    - "vl_pis"
+    - "cod_cta"
+
+"C195":
+  nivel: 4
+  pai: "C190"
+  campos:
+    - "cnpj_cpf_part"
+    - "cst_cofins"
+    - "cfop"
+    - "vl_item"
+    - "vl_desc"
+    - "vl_bc_cofins"
+    - "aliq_cofins"
+    - "quant_bc_cofins"
+    - "aliq_cofins_quant"
+    - "vl_cofins"
+    - "cod_cta"
+
+"C198":
+  nivel: 4
+  pai: "C190"
+  campos:
+    - "num_proc"
+    - "ind_proc"
+
+"C199":
+  nivel: 4
+  pai: "C190"
+  campos:
+    - "cod_doc_imp"
+    - "num_doc_imp"
+    - "vl_pis_imp"
+    - "vl_cofins_imp"
+    - "num_acdraw"
+
+"C380":
+  nivel: 3
+  pai: "C010"
+  campos:
+    - "cod_mod"
+    - "dt_doc_ini"
+    - "dt_doc_fin"
+    - "num_doc_ini"
+    - "num_doc_fin"
+    - "vl_doc"
+    - "vl_doc_canc"
+
+"C381":
+  nivel: 4
+  pai: "C380"
+  campos:
+    - "cst_pis"
+    - "cod_item"
+    - "vl_item"
+    - "vl_bc_pis"
+    - "aliq_pis"
+    - "quant_bc_pis"
+    - "aliq_pis_quant"
+    - "vl_pis"
+    - "cod_cta"
+
+"C385":
+  nivel: 4
+  pai: "C380"
+  campos:
+    - "cst_cofins"
+    - "cod_item"
+    - "vl_item"
+    - "vl_bc_cofins"
+    - "aliq_cofins"
+    - "quant_bc_cofins"
+    - "aliq_cofins_quant"
+    - "vl_cofins"
+    - "cod_cta"
+
+"C395":
+  nivel: 3
+  pai: "C010"
+  campos:
+    - "cod_mod"
+    - "cod_part"
+    - "ser"
+    - "sub_ser"
+    - "num_doc"
+    - "dt_doc"
+    - "vl_doc"
+
+"C396":
+  nivel: 4
+  pai: "C395"
+  campos:
+    - "cod_item"
+    - "vl_item"
+    - "vl_desc"
+    - "nat_bc_cred"
+    - "cst_pis"
+    - "vl_bc_pis"
+    - "aliq_pis"
+    - "vl_pis"
+    - "cst_cofins"
+    - "vl_bc_cofins"
+    - "aliq_cofins"
+    - "vl_cofins"
+    - "cod_cta"
+
+"C400":
+  nivel: 3
+  pai: "C010"
+  campos:
+    - "cod_mod"
+    - "ecf_mod"
+    - "ecf_fab"
+    - "ecf_cx"
+
+"C405":
+  nivel: 4
+  pai: "C400"
+  campos:
+    - "dt_doc"
+    - "cro"
+    - "crz"
+    - "num_coo_fin"
+    - "gt_fin"
+    - "vl_brt"
+
+"C481":
+  nivel: 5
+  pai: "C405"
+  campos:
+    - "cst_pis"
+    - "vl_item"
+    - "vl_bc_pis"
+    - "aliq_pis"
+    - "quant_bc_pis"
+    - "aliq_pis_quant"
+    - "vl_pis"
+    - "cod_item"
+    - "cod_cta"
+
+"C485":
+  nivel: 5
+  pai: "C405"
+  campos:
+    - "cst_cofins"
+    - "vl_item"
+    - "vl_bc_cofins"
+    - "aliq_cofins"
+    - "quant_bc_cofins"
+    - "aliq_cofins_quant"
+    - "vl_cofins"
+    - "cod_item"
+    - "cod_cta"
+
+"C489":
+  nivel: 4
+  pai: "C400"
+  campos:
+    - "num_proc"
+    - "ind_proc"
+
+"C490":
+  nivel: 3
+  pai: "C010"
+  campos:
+    - "dt_doc_ini"
+    - "dt_doc_fin"
+    - "cod_mod"
+
+"C491":
+  nivel: 4
+  pai: "C490"
+  campos:
+    - "cod_item"
+    - "cst_pis"
+    - "cfop"
+    - "vl_item"
+    - "vl_bc_pis"
+    - "aliq_pis"
+    - "quant_bc_pis"
+    - "aliq_pis_quant"
+    - "vl_pis"
+    - "cod_cta"
+
+"C495":
+  nivel: 4
+  pai: "C490"
+  campos:
+    - "cod_item"
+    - "cst_cofins"
+    - "cfop"
+    - "vl_item"
+    - "vl_bc_cofins"
+    - "aliq_cofins"
+    - "quant_bc_cofins"
+    - "aliq_cofins_quant"
+    - "vl_cofins"
+    - "cod_cta"
+
+"C499":
+  nivel: 4
+  pai: "C490"
+  campos:
+    - "num_proc"
+    - "ind_proc"
+
+"C500":
+  nivel: 3
+  pai: "C010"
+  campos:
+    - "cod_part"
+    - "cod_mod"
+    - "cod_sit"
+    - "ser"
+    - "sub"
+    - "num_doc"
+    - "dt_doc"
+    - "dt_e_s"
+    - "vl_doc"
+    - "vl_icms"
+    - "cod_inf"
+    - "vl_pis"
+    - "vl_cofins"
+
+"C501":
+  nivel: 4
+  pai: "C500"
+  campos:
+    - "cst_pis"
+    - "vl_item"
+    - "nat_bc_cred"
+    - "vl_bc_pis"
+    - "aliq_pis"
+    - "vl_pis"
+    - "cod_cta"
+
+"C505":
+  nivel: 4
+  pai: "C500"
+  campos:
+    - "cst_cofins"
+    - "vl_item"
+    - "nat_bc_cred"
+    - "vl_bc_cofins"
+    - "aliq_cofins"
+    - "vl_cofins"
+    - "cod_cta"
+
+"C509":
+  nivel: 4
+  pai: "C500"
+  campos:
+    - "num_proc"
+    - "ind_proc"
+
+"C600":
+  nivel: 3
+  pai: "C010"
+  campos:
+    - "cod_mod"
+    - "cod_mun"
+    - "ser"
+    - "sub"
+    - "cod_cons"
+    - "qtd_cons"
+    - "qtd_canc"
+    - "dt_doc"
+    - "vl_doc"
+    - "vl_desc"
+    - "cons"
+    - "vl_forn"
+    - "vl_serv_nt"
+    - "vl_terc"
+    - "vl_da"
+    - "vl_bc_icms"
+    - "vl_icms"
+    - "vl_bc_icms_st"
+    - "vl_icms_st"
+    - "vl_pis"
+    - "vl_cofins"
+
+"C601":
+  nivel: 4
+  pai: "C600"
+  campos:
+    - "cst_pis"
+    - "vl_item"
+    - "vl_bc_pis"
+    - "aliq_pis"
+    - "vl_pis"
+    - "cod_cta"
+
+"C605":
+  nivel: 4
+  pai: "C600"
+  campos:
+    - "cst_cofins"
+    - "vl_item"
+    - "vl_bc_cofins"
+    - "aliq_cofins"
+    - "vl_cofins"
+    - "cod_cta"
+
+"C609":
+  nivel: 4
+  pai: "C600"
+  campos:
+    - "num_proc"
+    - "ind_proc"
+
+"C990":
+  nivel: 1
+  pai: "0000"
+  campos:
+    - "qtd_lin_c"
+
+"D001":
+  nivel: 1
+  pai: "0000"
+  campos:
+    - "ind_mov"
+
+"D010":
+  nivel: 2
+  pai: "D001"
+  campos:
+    - "cnpj"
+
+"D100":
+  nivel: 3
+  pai: "D010"
+  campos:
+    - "ind_oper"
+    - "ind_emit"
+    - "cod_part"
+    - "cod_mod"
+    - "cod_sit"
+    - "ser"
+    - "sub"
+    - "num_doc"
+    - "chv_cte"
+    - "dt_doc"
+    - "dt_a_p"
+    - "tp_cte"
+    - "chv_cte_ref"
+    - "vl_doc"
+    - "vl_desc"
+    - "ind_frt"
+    - "vl_serv"
+    - "vl_bc_icms"
+    - "vl_icms"
+    - "vl_nt"
+    - "cod_inf"
+    - "cod_cta"
+
+"D101":
+  nivel: 4
+  pai: "D100"
+  campos:
+    - "ind_nat_frt"
+    - "vl_item"
+    - "cst_pis"
+    - "nat_bc_cred"
+    - "vl_bc_pis"
+    - "aliq_pis"
+    - "vl_pis"
+    - "cod_cta"
+
+"D105":
+  nivel: 4
+  pai: "D100"
+  campos:
+    - "ind_nat_frt"
+    - "vl_item"
+    - "cst_cofins"
+    - "nat_bc_cred"
+    - "vl_bc_cofins"
+    - "aliq_cofins"
+    - "vl_cofins"
+    - "cod_cta"
+
+"D111":
+  nivel: 4
+  pai: "D100"
+  campos:
+    - "num_proc"
+    - "ind_proc"
+
+"D200":
+  nivel: 3
+  pai: "D010"
+  campos:
+    - "cod_mod"
+    - "cod_sit"
+    - "ser"
+    - "sub"
+    - "num_doc_ini"
+    - "num_doc_fin"
+    - "cfop"
+    - "dt_ref"
+    - "vl_doc"
+    - "vl_desc"
+
+"D201":
+  nivel: 4
+  pai: "D200"
+  campos:
+    - "cst_pis"
+    - "vl_item"
+    - "vl_bc_pis"
+    - "aliq_pis"
+    - "vl_pis"
+    - "cod_cta"
+
+"D205":
+  nivel: 4
+  pai: "D200"
+  campos:
+    - "cst_cofins"
+    - "vl_item"
+    - "vl_bc_cofins"
+    - "aliq_cofins"
+    - "vl_cofins"
+    - "cod_cta"
+
+"D209":
+  nivel: 4
+  pai: "D200"
+  campos:
+    - "num_proc"
+    - "ind_proc"
+
+"D300":
+  nivel: 3
+  pai: "D010"
+  campos:
+    - "cod_mod"
+    - "ser"
+    - "sub"
+    - "num_doc_ini"
+    - "num_doc_fin"
+    - "cfop"
+    - "dt_ref"
+    - "vl_doc"
+    - "vl_desc"
+    - "cst_pis"
+    - "vl_bc_pis"
+    - "aliq_pis"
+    - "vl_pis"
+    - "cst_cofins"
+    - "vl_bc_cofins"
+    - "aliq_cofins"
+    - "vl_cofins"
+    - "cod_cta"
+
+"D309":
+  nivel: 4
+  pai: "D300"
+  campos:
+    - "num_proc"
+    - "ind_proc"
+
+"D350":
+  nivel: 3
+  pai: "D010"
+  campos:
+    - "cod_mod"
+    - "ecf_mod"
+    - "ecf_fab"
+    - "dt_doc"
+    - "cro"
+    - "crz"
+    - "num_coo_fin"
+    - "gt_fin"
+    - "vl_brt"
+    - "cst_pis"
+    - "vl_bc_pis"
+    - "aliq_pis"
+    - "quant_bc_pis"
+    - "aliq_pis_quant"
+    - "vl_pis"
+    - "cst_cofins"
+    - "vl_bc_cofins"
+    - "aliq_cofins"
+    - "quant_bc_cofins"
+    - "aliq_cofins_quant"
+    - "vl_cofins"
+    - "cod_cta"
+
+"D359":
+  nivel: 4
+  pai: "D350"
+  campos:
+    - "num_proc"
+    - "ind_proc"
+
+"D500":
+  nivel: 3
+  pai: "D010"
+  campos:
+    - "ind_oper"
+    - "ind_emit"
+    - "cod_part"
+    - "cod_mod"
+    - "cod_sit"
+    - "ser"
+    - "sub"
+    - "num_doc"
+    - "dt_doc"
+    - "dt_a_p"
+    - "vl_doc"
+    - "vl_desc"
+    - "vl_serv"
+    - "vl_serv_nt"
+    - "vl_terc"
+    - "vl_da"
+    - "vl_bc_icms"
+    - "vl_icms"
+    - "cod_inf"
+    - "vl_pis"
+    - "vl_cofins"
+
+"D501":
+  nivel: 4
+  pai: "D500"
+  campos:
+    - "cst_pis"
+    - "vl_item"
+    - "nat_bc_cred"
+    - "vl_bc_pis"
+    - "aliq_pis"
+    - "vl_pis"
+    - "cod_cta"
+
+"D505":
+  nivel: 4
+  pai: "D500"
+  campos:
+    - "cst_cofins"
+    - "vl_item"
+    - "nat_bc_cred"
+    - "vl_bc_cofins"
+    - "aliq_cofins"
+    - "vl_cofins"
+    - "cod_cta"
+
+"D509":
+  nivel: 4
+  pai: "D500"
+  campos:
+    - "num_proc"
+    - "ind_proc"
+
+"D600":
+  nivel: 3
+  pai: "D010"
+  campos:
+    - "cod_mod"
+    - "cod_mun"
+    - "ser"
+    - "sub"
+    - "ind_rec"
+    - "qtd_cons"
+    - "dt_doc_ini"
+    - "dt_doc_fin"
+    - "vl_doc"
+    - "vl_desc"
+    - "vl_serv"
+    - "vl_serv_nt"
+    - "vl_terc"
+    - "vl_da"
+    - "vl_bc_icms"
+    - "vl_icms"
+    - "vl_pis"
+    - "vl_cofins"
+
+"D601":
+  nivel: 4
+  pai: "D600"
+  campos:
+    - "cod_class"
+    - "vl_item"
+    - "vl_desc"
+    - "cst_pis"
+    - "vl_bc_pis"
+    - "aliq_pis"
+    - "vl_pis"
+    - "cod_cta"
+
+"D605":
+  nivel: 4
+  pai: "D600"
+  campos:
+    - "cod_class"
+    - "vl_item"
+    - "vl_desc"
+    - "cst_cofins"
+    - "vl_bc_cofins"
+    - "aliq_cofins"
+    - "vl_cofins"
+    - "cod_cta"
+
+"D609":
+  nivel: 4
+  pai: "D600"
+  campos:
+    - "num_proc"
+    - "ind_proc"
+
+"D990":
+  nivel: 1
+  pai: "0000"
+  campos:
+    - "qtd_lin_d"
+
+"F001":
+  nivel: 1
+  pai: "0000"
+  campos:
+    - "ind_mov"
+
+"F010":
+  nivel: 2
+  pai: "F001"
+  campos:
+    - "cnpj"
+
+"F100":
+  nivel: 3
+  pai: "F010"
+  campos:
+    - "ind_oper"
+    - "cod_part"
+    - "cod_item"
+    - "dt_oper"
+    - "vl_oper"
+    - "cst_pis"
+    - "vl_bc_pis"
+    - "aliq_pis"
+    - "vl_pis"
+    - "cst_cofins"
+    - "vl_bc_cofins"
+    - "aliq_cofins"
+    - "vl_cofins"
+    - "nat_bc_cred"
+    - "ind_orig_cred"
+    - "cod_cta"
+    - "cod_ccus"
+    - "desc_doc_oper"
+
+"F111":
+  nivel: 4
+  pai: "F100"
+  campos:
+    - "num_proc"
+    - "ind_proc"
+
+"F120":
+  nivel: 3
+  pai: "F010"
+  campos:
+    - "nat_bc_cred"
+    - "ident_bem_imob"
+    - "ind_orig_cred"
+    - "ind_util_bem_imob"
+    - "vl_oper_dep"
+    - "parc_oper_nao_bc_cred"
+    - "cst_pis"
+    - "vl_bc_pis"
+    - "aliq_pis"
+    - "vl_pis"
+    - "cst_cofins"
+    - "vl_bc_cofins"
+    - "aliq_cofins"
+    - "vl_cofins"
+    - "cod_cta"
+    - "cod_ccus"
+    - "desc_bem_imob"
+
+"F129":
+  nivel: 4
+  pai: "F120"
+  campos:
+    - "num_proc"
+    - "ind_proc"
+
+"F130":
+  nivel: 3
+  pai: "F010"
+  campos:
+    - "nat_bc_cred"
+    - "ident_bem_imob"
+    - "ind_orig_cred"
+    - "ind_util_bem_imob"
+    - "mes_oper_aquis"
+    - "vl_oper_aquis"
+    - "parc_oper_nao_bc_cred"
+    - "vl_bc_cred"
+    - "ind_nr_parc"
+    - "cst_pis"
+    - "vl_bc_pis"
+    - "aliq_pis"
+    - "vl_pis"
+    - "cst_cofins"
+    - "vl_bc_cofins"
+    - "aliq_cofins"
+    - "vl_cofins"
+    - "cod_cta"
+    - "cod_ccus"
+    - "desc_bem_imob"
+
+"F139":
+  nivel: 4
+  pai: "F130"
+  campos:
+    - "num_proc"
+    - "ind_proc"
+
+"F150":
+  nivel: 3
+  pai: "F010"
+  campos:
+    - "nat_bc_cred"
+    - "vl_tot_est"
+    - "est_imp"
+    - "vl_bc_est"
+    - "vl_bc_men_est"
+    - "cst_pis"
+    - "aliq_pis"
+    - "vl_cred_pis"
+    - "cst_cofins"
+    - "aliq_cofins"
+    - "vl_cred_cofins"
+    - "desc_est"
+    - "cod_cta"
+
+"F200":
+  nivel: 3
+  pai: "F010"
+  campos:
+    - "ind_oper"
+    - "unid_imob"
+    - "ident_emp"
+    - "desc_unid_imob"
+    - "num_cont"
+    - "cpf_cnpj_adqu"
+    - "dt_oper"
+    - "vl_tot_vend"
+    - "vl_rec_acum"
+    - "vl_tot_rec"
+    - "cst_pis"
+    - "vl_bc_pis"
+    - "aliq_pis"
+    - "vl_pis"
+    - "cst_cofins"
+    - "vl_bc_cofins"
+    - "aliq_cofins"
+    - "vl_cofins"
+    - "perc_rec_receb"
+    - "ind_nat_emp"
+    - "inf_comp"
+
+"F205":
+  nivel: 4
+  pai: "F200"
+  campos:
+    - "vl_cus_inc_acum_ant"
+    - "vl_cus_inc_per_esc"
+    - "vl_cus_inc_acum"
+    - "vl_exc_bc_cus_inc_acum"
+    - "vl_bc_cus_inc"
+    - "cst_pis"
+    - "aliq_pis"
+    - "vl_cred_pis_acum"
+    - "vl_cred_pis_desc_ant"
+    - "vl_cred_pis_desc"
+    - "vl_cred_pis_desc_fut"
+    - "cst_cofins"
+    - "aliq_cofins"
+    - "vl_cred_cofins_acum"
+    - "vl_cred_cofins_desc_ant"
+    - "vl_cred_cofins_desc"
+    - "vl_cred_cofins_desc_fut"
+
+"F210":
+  nivel: 4
+  pai: "F200"
+  campos:
+    - "vl_cus_orc"
+    - "vl_exc"
+    - "vl_cus_orc_aju"
+    - "vl_bc_cred"
+    - "cst_pis"
+    - "aliq_pis"
+    - "vl_cred_pis_util"
+    - "cst_cofins"
+    - "aliq_cofins"
+    - "vl_cred_cofins_util"
+
+"F211":
+  nivel: 4
+  pai: "F200"
+  campos:
+    - "num_proc"
+    - "ind_proc"
+
+"F600":
+  nivel: 3
+  pai: "F010"
+  campos:
+    - "ind_nat_ret"
+    - "dt_ret"
+    - "vl_bc_ret"
+    - "vl_ret"
+    - "cod_rec"
+    - "ind_nat_rec"
+    - "cnpj"
+    - "vl_ret_pis"
+    - "vl_ret_cofins"
+    - "ind_dec"
+
+"F700":
+  nivel: 3
+  pai: "F010"
+  campos:
+    - "ind_ori_ded"
+    - "ind_nat_ded"
+    - "vl_ded_pis"
+    - "vl_ded_cofins"
+    - "vl_bc_oper"
+    - "cnpj"
+    - "inf_comp"
+
+"F800":
+  nivel: 3
+  pai: "F010"
+  campos:
+    - "ind_nat_even"
+    - "dt_even"
+    - "cnpj_suced"
+    - "pa_cont_cred"
+    - "cod_cred"
+    - "vl_cred_pis"
+    - "vl_cred_cofins"
+    - "per_cred_cis"
+
+"F990":
+  nivel: 1
+  pai: "0000"
+  campos:
+    - "qtd_lin_f"
+
+"M001":
+  nivel: 1
+  pai: "0000"
+  campos:
+    - "ind_mov"
+
+"M100":
+  nivel: 2
+  pai: "M001"
+  campos:
+    - "cod_cred"
+    - "ind_cred_ori"
+    - "vl_bc_cred"
+    - "aliq_pis"
+    - "quant_bc_pis"
+    - "aliq_pis_quant"
+    - "vl_cred"
+    - "vl_ajus_acres"
+    - "vl_ajus_reduc"
+    - "vl_cred_dif"
+    - "vl_cred_disp"
+    - "ind_desc_cred"
+    - "vl_cred_desc"
+    - "sld_cred"
+
+"M105":
+  nivel: 3
+  pai: "M100"
+  campos:
+    - "nat_bc_cred"
+    - "cst_pis"
+    - "vl_bc_pis_tot"
+    - "vl_bc_pis_cum"
+    - "vl_bc_pis_nc"
+    - "vl_bc_pis"
+    - "quant_bc_pis_tot"
+    - "quant_bc_pis"
+    - "desc_cred"
+
+"M110":
+  nivel: 3
+  pai: "M100"
+  campos:
+    - "ind_aj"
+    - "vl_aj"
+    - "cod_aj"
+    - "num_doc"
+    - "descr_aj"
+    - "dt_ref"
+
+"M200":
+  nivel: 2
+  pai: "M001"
+  campos:
+    - "vl_tot_cont_nc_per"
+    - "vl_tot_cred_desc"
+    - "vl_tot_cred_desc_ant"
+    - "vl_tot_cont_nc_dev"
+    - "vl_ret_nc"
+    - "vl_out_ded_nc"
+    - "vl_cont_nc_rec"
+    - "vl_tot_cont_cum_per"
+    - "vl_ret_cum"
+    - "vl_out_ded_cum"
+    - "vl_cont_cum_rec"
+    - "vl_tot_cont_rec"
+
+"M210":
+  nivel: 3
+  pai: "M200"
+  campos:
+    - "cod_cont"
+    - "vl_rec_brt"
+    - "vl_bc_cont"
+    - "aliq_pis"
+    - "quant_bc_pis"
+    - "aliq_pis_quant"
+    - "vl_cont_apur"
+    - "vl_ajus_acres"
+    - "vl_ajus_reduc"
+    - "vl_cont_difer"
+    - "vl_cont_difer_ant"
+    - "vl_cont_per"
+
+"M211":
+  nivel: 4
+  pai: "M210"
+  campos:
+    - "ind_tip_coop"
+    - "vl_bc_cont_ant_exc_coop"
+    - "vl_exc_coop_ger"
+    - "vl_exc_esp_coop"
+    - "vl_bc_cont"
+
+"M220":
+  nivel: 4
+  pai: "M210"
+  campos:
+    - "ind_aj"
+    - "vl_aj"
+    - "cod_aj"
+    - "num_doc"
+    - "descr_aj"
+    - "dt_ref"
+
+"M230":
+  nivel: 4
+  pai: "M210"
+  campos:
+    - "cnpj"
+    - "vl_vend"
+    - "vl_nao_receb"
+    - "vl_cont_dif"
+    - "vl_cred_dif"
+    - "cod_cred"
+
+"M300":
+  nivel: 2
+  pai: "M001"
+  campos:
+    - "cod_cont"
+    - "vl_cont_apur_difer"
+    - "nat_cred_desc"
+    - "vl_cred_desc_difer"
+    - "vl_cont_difer_ant"
+    - "per_apur"
+    - "dt_receb"
+
+"M350":
+  nivel: 2
+  pai: "M001"
+  campos:
+    - "vl_tot_fol"
+    - "vl_exc_bc"
+    - "vl_tot_bc"
+    - "aliq_pis_fol"
+    - "vl_tot_cont_fol"
+
+"M400":
+  nivel: 2
+  pai: "M001"
+  campos:
+    - "cst_pis"
+    - "vl_tot_rec"
+    - "cod_cta"
+    - "desc_compl"
+
+"M410":
+  nivel: 3
+  pai: "M400"
+  campos:
+    - "nat_rec"
+    - "vl_rec"
+    - "cod_cta"
+    - "desc_compl"
+
+"M500":
+  nivel: 2
+  pai: "M001"
+  campos:
+    - "cod_cred"
+    - "ind_cred_ori"
+    - "vl_bc_cred"
+    - "aliq_cofins"
+    - "quant_bc_cofins"
+    - "aliq_cofins_quant"
+    - "vl_cred"
+    - "vl_ajus_acres"
+    - "vl_ajus_reduc"
+    - "vl_cred_dif"
+    - "vl_cred_disp"
+    - "ind_desc_cred"
+    - "vl_cred_desc"
+    - "sld_cred"
+
+"M505":
+  nivel: 3
+  pai: "M500"
+  campos:
+    - "nat_bc_cred"
+    - "cst_cofins"
+    - "vl_bc_cofins_tot"
+    - "vl_bc_cofins_cum"
+    - "vl_bc_cofins_nc"
+    - "vl_bc_cofins"
+    - "quant_bc_cofins_tot"
+    - "quant_bc_cofins"
+    - "desc_cred"
+
+"M510":
+  nivel: 3
+  pai: "M500"
+  campos:
+    - "ind_aj"
+    - "vl_aj"
+    - "cod_aj"
+    - "num_doc"
+    - "descr_aj"
+    - "dt_ref"
+
+"M600":
+  nivel: 2
+  pai: "M001"
+  campos:
+    - "vl_tot_cont_nc_per"
+    - "vl_tot_cred_desc"
+    - "vl_tot_cred_desc_ant"
+    - "vl_tot_cont_nc_dev"
+    - "vl_ret_nc"
+    - "vl_out_ded_nc"
+    - "vl_cont_nc_rec"
+    - "vl_tot_cont_cum_per"
+    - "vl_ret_cum"
+    - "vl_out_ded_cum"
+    - "vl_cont_cum_rec"
+    - "vl_tot_cont_rec"
+
+"M610":
+  nivel: 3
+  pai: "M600"
+  campos:
+    - "cod_cont"
+    - "vl_rec_brt"
+    - "vl_bc_cont"
+    - "aliq_cofins"
+    - "quant_bc_cofins"
+    - "aliq_cofins_quant"
+    - "vl_cont_apur"
+    - "vl_ajus_acres"
+    - "vl_ajus_reduc"
+    - "vl_cont_difer"
+    - "vl_cont_difer_ant"
+    - "vl_cont_per"
+
+"M611":
+  nivel: 4
+  pai: "M610"
+  campos:
+    - "ind_tip_coop"
+    - "vl_bc_cont_ant_exc_coop"
+    - "vl_exc_coop_ger"
+    - "vl_exc_esp_coop"
+    - "vl_bc_cont"
+
+"M620":
+  nivel: 4
+  pai: "M610"
+  campos:
+    - "ind_aj"
+    - "vl_aj"
+    - "cod_aj"
+    - "num_doc"
+    - "descr_aj"
+    - "dt_ref"
+
+"M630":
+  nivel: 4
+  pai: "M610"
+  campos:
+    - "cnpj"
+    - "vl_vend"
+    - "vl_nao_receb"
+    - "vl_cont_dif"
+    - "vl_cred_dif"
+    - "cod_cred"
+
+"M700":
+  nivel: 2
+  pai: "M001"
+  campos:
+    - "cod_cont"
+    - "vl_cont_apur_difer"
+    - "nat_bc_cred_desc"
+    - "vl_cred_desc_difer"
+    - "vl_cont_difer_ant"
+    - "per_apur"
+    - "dt_receb"
+
+"M800":
+  nivel: 2
+  pai: "M001"
+  campos:
+    - "cst_cofins"
+    - "vl_tot_rec"
+    - "cod_cta"
+    - "desc_compl"
+
+"M810":
+  nivel: 3
+  pai: "M800"
+  campos:
+    - "nat_rec"
+    - "vl_rec"
+    - "cod_cta"
+    - "desc_compl"
+
+"M990":
+  nivel: 1
+  pai: "0000"
+  campos:
+    - "qtd_lin_m"
+
+"P001":
+  nivel: 1
+  pai: "0000"
+  campos:
+    - "ind_mov"
+
+"P010":
+  nivel: 2
+  pai: "P001"
+  campos:
+    - "cnpj"
+
+"P100":
+  nivel: 3
+  pai: "P010"
+  campos:
+    - "dt_ini"
+    - "dt_fim"
+    - "vl_rec_tot_est"
+    - "cod_ativ_econ"
+    - "vl_rec_ativ_estab"
+    - "vl_exc"
+    - "vl_bc_cont"
+    - "aliq_cont"
+    - "vl_cont_apu"
+    - "cod_cta"
+    - "info_compl"
+
+"P110":
+  nivel: 4
+  pai: "P100"
+  campos:
+    - "num_campo"
+    - "cod_det"
+    - "det_valor"
+    - "inf_compl"
+
+"P199":
+  nivel: 4
+  pai: "P100"
+  campos:
+    - "num_proc"
+    - "ind_proc"
+
+"P200":
+  nivel: 2
+  pai: "P001"
+  campos:
+    - "per_ref"
+    - "vl_tot_cont_apu"
+    - "vl_tot_aj_reduc"
+    - "vl_tot_aj_acres"
+    - "vl_tot_cont_dev"
+    - "cod_rec"
+
+"P210":
+  nivel: 3
+  pai: "P200"
+  campos:
+    - "ind_aj"
+    - "vl_aj"
+    - "cod_aj"
+    - "num_doc"
+    - "descr_aj"
+    - "dt_ref"
+
+"P990":
+  nivel: 1
+  pai: "0000"
+  campos:
+    - "qtd_lin_p"
+

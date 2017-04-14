@@ -1,0 +1,18 @@
+Sequel.migration do
+  change do
+    create_table :reg_c115 do
+      column :id, Integer, :primary_key=>true
+      column :id_pai, Integer, :index=>true, :null=>false
+      column :ind_carga, String, :size=>1
+      column :cnpj_col, String, :size=>14
+      column :ie_col, String, :size=>14
+      column :cpf_col, String, :size=>11
+      column :cod_mun_col, String, :size=>7
+      column :cnpj_entg, String, :size=>14
+      column :ie_entg, String, :size=>14
+      column :cpf_entg, String, :size=>11
+      column :cod_mun_entg, String, :size=>7
+      column :cnpj_pai, String, :size=>14, :index=>true
+    end
+  end
+end

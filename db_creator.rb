@@ -10,18 +10,19 @@ class DbCreator
     :mssql => 'master'
   }
 
-  def initialize(db_config, db_name, adapter = :postgres, layout = :fiscal)
+  def initialize(db_config, db_name, adapter = :postgres, layout = :fiscal, layoutVersion)
     @db_config = db_config
     @db_name = db_name
     @adapter = adapter
     @layout = layout
+    @layoutVersion = layoutVersion
   end
 
   def exists?
     begin
       config = @db_config.clone
       config[:database] = @db_name
-
+      
       db = Sequel.connect(config)
       db.test_connection == true
     rescue
@@ -40,7 +41,7 @@ class DbCreator
     config[:database] = @db_name
 
     Sequel.connect(config) do |db|
-      Sequel::Migrator.run(db, "migrations/#{@layout}")
+      Sequel::Migrator.run(db, "migrations/#{@layout}/v#{@layoutVersion}")
     end
   end
 end

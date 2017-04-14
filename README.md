@@ -21,9 +21,9 @@ $ bundle install
 $ ruby extrair.rb <nome_BD> [tipo_arquivo] [caminho_sped]
 ```
 - `nome_BD`: um identificador de sua escolha para o BD
-- `tipo_arquivo`: os valores possíveis são *fiscal* (*default*), *contrib* ou *ecf*
+- `tipo_arquivo`: os valores possíveis são *fiscal* (*default*) e *contrib*
 - `caminho_sped`: caminho absoluto de um arquivo ou diretório com arquivos SPED (default: ./sped)
 
 ### TODO
-- Script para criação de BD do SPED ECF no Postgres
+- Suporte ao SPED ECF
 - Carregar vários arquivos em paralelo

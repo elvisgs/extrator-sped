@@ -4,24 +4,35 @@ require 'yaml'
 class Registro
   attr_reader :nome, :bloco, :pai, :campos, :valores
 
-  @@blocos = nil
+  @@metadados = nil
 
-  def initialize(linha, layout = :fiscal)
-    @@blocos ||= YAML.load_file("config/hierarquia-sped-#{layout}.yml")
+  @@versoes = {
+    :fiscal => ['009', '010', '011'],
+    :contrib => ['002', '003']
+  }
+
+  def initialize(linha, layout = :fiscal, versao)
+    @layout = layout
+    @versao = versao
+    @@metadados ||= YAML.load_file("meta/metadados-#{@layout}-v#{@versao}.yml")
+
     @valores = dividir_linha_em_valores linha
     @nome = @valores.shift.upcase
     @bloco = @nome[0]
 
-    if @@blocos.key? @bloco and @@blocos[@bloco].key? @nome
-      @pai = @@blocos[@bloco][@nome]['pai']
-    else
-      raise "Bloco #{@bloco} ou registro #{@nome} nao suportado"
+    if not @@metadados.key? @nome
+      raise "Registro #{@nome} nao suportado"
     end
 
-    @campos = @@blocos[@bloco][@nome]['campos']
+    @pai = @@metadados[@nome]['pai']
+    @campos = @@metadados[@nome]['campos']
 
     corrigir_caracteres_especiais
     corrigir_datas
+  end
+
+  def self.versoes
+    @@versoes
   end
 
   private
