@@ -1,8 +1,8 @@
 Sequel.migration do
   change do
     create_table :reg_c173 do
-      column :id, Integer, :primary_key=>true
-      column :id_pai, Integer, :index=>true, :null=>false
+      column :id, Bignum, :primary_key=>true
+      column :id_pai, Bignum, :index=>true, :null=>false
       column :lote_med, String, :size=>1000
       column :qtd_item, BigDecimal, :size=>[18, 3]
       column :dt_fab, Date

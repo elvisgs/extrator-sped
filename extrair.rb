@@ -100,7 +100,7 @@ Sequel.connect($config) do |db|
 
         id = $chaves[registro.nome]
         if id == nil
-          id = db[tabela].select{coalesce(max(:id), 0).as(:id)}.first[:id]
+          id = Integer(db[tabela].select{coalesce(max(:id), 0).as(:id)}.first[:id])
         end
         id += 1
         $chaves[registro.nome] = id

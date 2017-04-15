@@ -1,8 +1,8 @@
 Sequel.migration do
   change do
     create_table :reg_0300 do
-      column :id, Integer, :primary_key=>true
-      column :id_pai, Integer, :index=>true, :null=>false
+      column :id, Bignum, :primary_key=>true
+      column :id_pai, Bignum, :index=>true, :null=>false
       column :cod_ind_bem, String, :size=>60
       column :ident_merc, String, :size=>1
       column :descr_item, String, :size=>1000

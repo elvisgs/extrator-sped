@@ -1,8 +1,8 @@
 Sequel.migration do
   change do
     create_table :reg_1310 do
-      column :id, Integer, :primary_key=>true
-      column :id_pai, Integer, :index=>true, :null=>false
+      column :id, Bignum, :primary_key=>true
+      column :id_pai, Bignum, :index=>true, :null=>false
       column :num_tanque, String, :size=>3
       column :estq_abert, BigDecimal, :size=>[18, 3]
       column :vol_entr, BigDecimal, :size=>[18, 3]

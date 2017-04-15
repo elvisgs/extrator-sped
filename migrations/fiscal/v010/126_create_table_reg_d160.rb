@@ -1,8 +1,8 @@
 Sequel.migration do
   change do
     create_table :reg_d160 do
-      column :id, Integer, :primary_key=>true
-      column :id_pai, Integer, :index=>true, :null=>false
+      column :id, Bignum, :primary_key=>true
+      column :id_pai, Bignum, :index=>true, :null=>false
       column :despacho, String, :size=>1000
       column :cnpj_cpf_rem, String, :size=>14
       column :ie_rem, String, :size=>14

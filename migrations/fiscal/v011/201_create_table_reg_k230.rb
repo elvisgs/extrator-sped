@@ -1,8 +1,8 @@
 Sequel.migration do
   change do
     create_table :reg_k230 do
-      column :id, Integer, :primary_key=>true
-      column :id_pai, Integer, :index=>true, :null=>false
+      column :id, Bignum, :primary_key=>true
+      column :id_pai, Bignum, :index=>true, :null=>false
       column :dt_ini_op, Date
       column :dt_fin_op, Date
       column :cod_doc_op, String, :size=>30

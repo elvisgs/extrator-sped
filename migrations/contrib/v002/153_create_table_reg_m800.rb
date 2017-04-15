@@ -1,8 +1,8 @@
 Sequel.migration do
   change do
     create_table :reg_m800 do
-      column :id, Integer, :primary_key=>true
-      column :id_pai, Integer, :index=>true, :null=>false
+      column :id, Bignum, :primary_key=>true
+      column :id_pai, Bignum, :index=>true, :null=>false
       column :cst_cofins, String, :size=>2
       column :vl_tot_rec, BigDecimal, :size=>[18, 2]
       column :cod_cta, String, :size=>60

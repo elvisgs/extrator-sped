@@ -1,8 +1,8 @@
 Sequel.migration do
   change do
     create_table :reg_d180 do
-      column :id, Integer, :primary_key=>true
-      column :id_pai, Integer, :index=>true, :null=>false
+      column :id, Bignum, :primary_key=>true
+      column :id_pai, Bignum, :index=>true, :null=>false
       column :num_seq, Integer
       column :ind_emit, String, :size=>1
       column :cnpj_cpf_emit, String, :size=>14

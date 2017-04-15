@@ -1,8 +1,8 @@
 Sequel.migration do
   change do
     create_table :reg_f200 do
-      column :id, Integer, :primary_key=>true
-      column :id_pai, Integer, :index=>true, :null=>false
+      column :id, Bignum, :primary_key=>true
+      column :id_pai, Bignum, :index=>true, :null=>false
       column :ind_oper, String, :size=>2
       column :unid_imob, String, :size=>2
       column :ident_emp, String, :size=>1000

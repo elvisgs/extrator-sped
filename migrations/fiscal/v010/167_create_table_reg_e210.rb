@@ -1,8 +1,8 @@
 Sequel.migration do
   change do
     create_table :reg_e210 do
-      column :id, Integer, :primary_key=>true
-      column :id_pai, Integer, :index=>true, :null=>false
+      column :id, Bignum, :primary_key=>true
+      column :id_pai, Bignum, :index=>true, :null=>false
       column :ind_mov_st, String, :size=>1
       column :vl_sld_cred_ant_st, BigDecimal, :size=>[18, 2]
       column :vl_devol_st, BigDecimal, :size=>[18, 2]
