@@ -12,7 +12,7 @@ require 'db_tools'
 require 'utils'
 
 def mostrar_uso
-  puts 'Uso: ruby extrair.rb <nome_bd> [fiscal|contrib] [caminho_sped]'
+  puts 'Uso: ruby extrair.rb <nome_bd> <caminho_sped>'
   exit 1
 end
 
@@ -20,15 +20,13 @@ sgbd = ENV['SGBD_EXTRACAO'] || 'postgres' # mssql|postgres
 config = YAML.load_file('config/database.yml')[sgbd]
 
 nome_bd = ARGV.shift
-layout = (ARGV.shift || 'fiscal').to_sym
 caminho = ARGV.select {|arg| File.file? arg or File.directory? arg}[0]
 
 if caminho.nil?
-  STDERR.puts 'Caminho invalido'
+  STDERR.puts 'Caminho inválido'
   mostrar_uso
 end
 
-caminho ||= File.expand_path 'sped'
 arquivos_sped = Find.find(caminho).select {|f| Utils.sped_file? f}
 num_arquivos = arquivos_sped.size
 
@@ -37,6 +35,7 @@ if num_arquivos == 0
   exit 1
 end
 
+layout = Utils.get_layout(arquivos_sped.first)
 versao = Utils.get_version arquivos_sped.first
 versoes_validas = Registro.versoes[layout]
 unless versoes_validas.include? versao
@@ -45,6 +44,8 @@ unless versoes_validas.include? versao
 end
 
 if nome_bd
+  puts "SPED #{layout.to_s.capitalize} v#{versao}"
+
   bd_sped = DbTools.new(config, nome_bd, sgbd.to_sym, layout, versao)
 
   if not bd_sped.exists?
