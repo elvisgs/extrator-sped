@@ -1,41 +1,51 @@
 #!/usr/bin/env ruby
 
+cwd = File.dirname(__FILE__)
+$LOAD_PATH.unshift cwd
+
 require 'find'
 require 'ruby-progressbar'
 require 'sequel'
 require 'yaml'
-require_relative 'registro'
-require_relative 'db_creator'
-require_relative 'utils'
+require 'registro'
+require 'db_tools'
+require 'utils'
 
 def mostrar_uso
   puts 'Uso: ruby extrair.rb <nome_bd> [fiscal|contrib] [caminho_sped]'
   exit 1
 end
 
-cwd = File.dirname(__FILE__)
-
 sgbd = ENV['SGBD_EXTRACAO'] || 'postgres' # mssql|postgres
 config = YAML.load_file('config/database.yml')[sgbd]
 
 nome_bd = ARGV.shift
 layout = (ARGV.shift || 'fiscal').to_sym
-caminho = ARGV.shift
+caminho = ARGV.select {|arg| File.file? arg or File.directory? arg}[0]
 
-if not caminho.nil? and not (File.file?(caminho) or File.directory?(caminho))
-  puts 'Caminho invalido'
+if caminho.nil?
+  STDERR.puts 'Caminho invalido'
   mostrar_uso
 end
 
-versao = Utils.detect_version(Find.find(caminho).first(2).last)
+caminho ||= File.expand_path 'sped'
+arquivos_sped = Find.find(caminho).select {|f| Utils.sped_file? f}
+num_arquivos = arquivos_sped.size
+
+if num_arquivos == 0
+  STDERR.puts 'Nenhum arquivo no formato SPED foi encontrado'
+  exit 1
+end
+
+versao = Utils.get_version arquivos_sped.first
 versoes_validas = Registro.versoes[layout]
 unless versoes_validas.include? versao
-  puts "Versão #{versao} é inválida para o layout '#{layout}'. As versões válidas são: #{versoes_validas.join(', ')}"
+  STDERR.puts "Versão #{versao} não suportada para o layout '#{layout}'\nAs versões suportadas são: #{versoes_validas.join(', ')}"
   exit 1
 end
 
 if nome_bd
-  bd_sped = DbCreator.new(config, nome_bd, sgbd.to_sym, layout, versao)
+  bd_sped = DbTools.new(config, nome_bd, sgbd.to_sym, layout, versao)
 
   if not bd_sped.exists?
     puts 'Criando banco de dados...'
@@ -47,7 +57,7 @@ if nome_bd
 
   config[:database] = nome_bd
 else
-  puts 'Informe o nome do banco de dados'
+  STDERR.puts 'Informe o nome do banco de dados'
   mostrar_uso
 end
 
@@ -55,76 +65,54 @@ chaves = {}
 cont = 0
 
 Sequel.connect(config) do |db|
-  caminho ||= cwd + '/sped'
-  num_arquivos = File.file?(caminho) ? 1 : Dir.glob(caminho + '/*.txt').count
-
-  Find.find(caminho).each do |f|
-    next if not File.file?(f) or File.zero?(f)
-
+  arquivos_sped.each do |f|
     puts ("\n[%03d/%03d] %s" % [cont + 1, num_arquivos, File.basename(f)])
 
     total_linhas = Utils.count_lines f
 
     progressbar = ProgressBar.create(:title => 'Progresso', :format => '[%B] %p%%')
 
-    cnpj = Utils.detect_cnpj f, layout
+    cnpj = Utils.get_cnpj f, layout
 
     sped = File.open(f, 'r:CP850:UTF-8')
 
-    linha = sped.readline
-
-    next if sped.eof?
-
     db.transaction do
-      begin
-        progresso = ((sped.lineno * 100) / total_linhas).round
-        if progresso > progressbar.progress
-          progressbar.progress = progresso
-        end
+      sped.each_line do |linha|
+        begin
+          registro = Registro.new linha, layout, versao
 
-        registro = Registro.new linha, layout, versao
-        tabela = "reg_#{registro.nome}".downcase.to_sym
-
-        if layout == :contrib
-          if registro.pai == '0001'
-            cnpj = ''
+          if layout == :contrib
+            cnpj = '' if registro.pai == '0001'
+            cnpj = registro.cnpj if registro.nome.end_with? '010' or registro.nome == '0140'
           end
-          if registro.nome.end_with? '010'
-            cnpj = registro.valores[0]
+
+          tabela = "reg_#{registro.nome}".downcase.to_sym
+          id = chaves[registro.nome] || Integer(db[tabela].max(:id) || 0)
+          id += 1
+          chaves[registro.nome] = id
+
+          id_pai = chaves[registro.pai] || (layout == :contrib ? 1 : 0)
+
+          valores = {:id => id, :id_pai => id_pai, :cnpj_pai => cnpj}.merge registro.to_h
+
+          db[tabela].insert valores
+
+          progresso = ((sped.lineno * 100) / total_linhas).round
+          if progresso > progressbar.progress
+            progressbar.progress = progresso
           end
-          if registro.nome == '0140'
-            cnpj = registro.valores[2]
-          end
+        rescue
+          progressbar.stop
+          STDERR.puts linha
+          raise
         end
-
-        id = chaves[registro.nome]
-        if id == nil
-          id = Integer(db[tabela].select{coalesce(max(:id), 0).as(:id)}.first[:id])
-        end
-        id += 1
-        chaves[registro.nome] = id
-
-        id_pai = chaves[registro.pai] || (layout == :contrib ? '1' : nil)
-
-        valores = {:id => id, :id_pai => id_pai, :cnpj_pai => cnpj}.merge registro.to_h
-
-        db[tabela].insert valores
-
-        linha = sped.readline
-      rescue
-        progressbar.stop
-        puts linha
-        raise
-        break
-      end until not linha.start_with? '|' or sped.eof?
+      end
     end
 
     sped.close
     cont += 1
     progressbar.finish
   end
-
-  db.drop_table? :schema_info
 
   puts "\n#{cont} arquivo(s) processado(s)."
 end

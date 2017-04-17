@@ -29,6 +29,8 @@ class Registro
 
     corrigir_caracteres_especiais
     corrigir_datas
+
+    @hash = to_h
   end
 
   def self.versoes
@@ -38,6 +40,11 @@ class Registro
   def to_h
     valores = @valores.map {|v| v.empty? ? nil : v}
     @campos.map(&:to_sym).zip(valores).to_h
+  end
+
+  def method_missing(m)
+    super unless @hash.key? m
+    @hash[m]
   end
 
   private

@@ -1,9 +1,8 @@
 require 'sequel'
-require 'yaml'
 
 Sequel.extension :migration
 
-class DbCreator
+class DbTools
 
   @@default_databases = {
     :postgres => 'template1',
@@ -19,9 +18,7 @@ class DbCreator
   end
 
   def exists?
-    config = @db_config.clone
-    config[:database] = @db_name
-
+    config = @db_config.merge(:database => @db_name)
     db = Sequel.connect(config)
     db.test_connection
   rescue
@@ -29,8 +26,7 @@ class DbCreator
   end
 
   def create
-    config = @db_config.clone
-    config[:database] = @@default_databases[@adapter]
+    config = @db_config.merge(:database => @@default_databases[@adapter])
 
     Sequel.connect(config) do |db|
       db.run "create database #{@db_name}"
@@ -40,6 +36,8 @@ class DbCreator
 
     Sequel.connect(config) do |db|
       Sequel::Migrator.run(db, "migrations/#{@layout}/v#{@layout_version}")
+
+      db.drop_table? :schema_info
     end
   end
 end
