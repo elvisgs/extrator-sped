@@ -11,8 +11,9 @@ require 'registro'
 require 'db_tools'
 require 'utils'
 
-def mostrar_uso
-  puts 'Uso: ruby extrair.rb <nome_bd> <caminho_sped>'
+erro_proc = lambda do |msg, uso = false|
+  STDERR.puts msg
+  STDERR.puts 'Uso: ruby extrair.rb <nome_bd> <caminho_sped>' if uso
   exit 1
 end
 
@@ -22,26 +23,20 @@ config = YAML.load_file('config/database.yml')[sgbd]
 nome_bd = ARGV.shift
 caminho = ARGV.select { |arg| File.file?(arg) || File.directory?(arg) }[0]
 
-if caminho.nil?
-  STDERR.puts 'Caminho inválido'
-  mostrar_uso
-end
+erro_proc['Caminho inválido', true] if caminho.nil?
 
 arquivos_sped = Find.find(caminho).select { |f| Utils.sped_file? f }
 num_arquivos = arquivos_sped.size
 
-if num_arquivos.zero?
-  STDERR.puts 'Nenhum arquivo no formato SPED foi encontrado'
-  exit 1
-end
+erro_proc['Nenhum arquivo no formato SPED foi encontrado'] if num_arquivos.zero?
 
 layout = Utils.get_layout(arquivos_sped.first)
 versao = Utils.get_version arquivos_sped.first
 versoes_validas = Registro.versoes[layout]
 unless versoes_validas.include? versao
-  STDERR.puts "Versão #{versao} não suportada para o layout '#{layout}'"
-  STDERR.puts "As versões suportadas são: #{versoes_validas.join(', ')}"
-  exit 1
+  msg = "Versão #{versao} não suportada para o layout '#{layout}'\n"
+  msg << "As versões suportadas são: #{versoes_validas.join(', ')}"
+  erro_proc[msg]
 end
 
 if nome_bd
@@ -59,8 +54,7 @@ if nome_bd
 
   config[:database] = nome_bd
 else
-  STDERR.puts 'Informe o nome do banco de dados'
-  mostrar_uso
+  erro_proc['Informe o nome do banco de dados', true]
 end
 
 chaves = {}
@@ -103,10 +97,11 @@ Sequel.connect(config) do |db|
 
           progresso = ((sped.lineno * 100) / total_linhas).round
           progressbar.progress = progresso if progresso > progressbar.progress
-        rescue
+        rescue => e
           progressbar.stop
-          STDERR.puts linha
-          raise
+          msg = "Erro: #{e.class}: #{e.message}\n#{e.backtrace.first}\n"
+          msg << "Linha #{sped.lineno}: #{linha}"
+          erro_proc[msg]
         end
       end
     end
