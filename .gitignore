@@ -3,3 +3,4 @@ config/database.yml
 Gemfile.lock
 sped/*.txt
 .idea/
+.vscode/

@@ -19,15 +19,15 @@ class Utils
   end
 
   def self.count_lines(file_path)
-    #linux
+    # linux
     `wc -l "#{file_path}"`.strip.split(' ')[0].to_i
   rescue
-    #windows
+    # windows
     `find /v /c "" "#{file_path}"`.strip.split(' ').last.to_i
   end
 
   def self.sped_file?(file_path)
-    File.file? file_path and get_first_line(file_path).start_with? '|0000|'
+    File.file?(file_path) && get_first_line(file_path).start_with?('|0000|')
   end
 
   def self.get_layout(file_path)

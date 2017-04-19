@@ -20,17 +20,17 @@ sgbd = ENV['SGBD_EXTRACAO'] || 'postgres' # mssql|postgres
 config = YAML.load_file('config/database.yml')[sgbd]
 
 nome_bd = ARGV.shift
-caminho = ARGV.select {|arg| File.file? arg or File.directory? arg}[0]
+caminho = ARGV.select { |arg| File.file?(arg) || File.directory?(arg) }[0]
 
 if caminho.nil?
   STDERR.puts 'Caminho inválido'
   mostrar_uso
 end
 
-arquivos_sped = Find.find(caminho).select {|f| Utils.sped_file? f}
+arquivos_sped = Find.find(caminho).select { |f| Utils.sped_file? f }
 num_arquivos = arquivos_sped.size
 
-if num_arquivos == 0
+if num_arquivos.zero?
   STDERR.puts 'Nenhum arquivo no formato SPED foi encontrado'
   exit 1
 end
@@ -39,7 +39,8 @@ layout = Utils.get_layout(arquivos_sped.first)
 versao = Utils.get_version arquivos_sped.first
 versoes_validas = Registro.versoes[layout]
 unless versoes_validas.include? versao
-  STDERR.puts "Versão #{versao} não suportada para o layout '#{layout}'\nAs versões suportadas são: #{versoes_validas.join(', ')}"
+  STDERR.puts "Versão #{versao} não suportada para o layout '#{layout}'"
+  STDERR.puts "As versões suportadas são: #{versoes_validas.join(', ')}"
   exit 1
 end
 
@@ -48,7 +49,7 @@ if nome_bd
 
   bd_sped = DbTools.new(config, nome_bd, sgbd.to_sym, layout, versao)
 
-  if not bd_sped.exists?
+  if !bd_sped.exists?
     puts 'Criando banco de dados...'
     bd_sped.create
     puts 'Banco de dados criado.'
@@ -67,11 +68,11 @@ cont = 0
 
 Sequel.connect(config) do |db|
   arquivos_sped.each do |f|
-    puts ("\n[%03d/%03d] %s" % [cont + 1, num_arquivos, File.basename(f)])
+    puts format("\n[%03d/%03d] %s", cont + 1, num_arquivos, File.basename(f))
 
     total_linhas = Utils.count_lines f
 
-    progressbar = ProgressBar.create(:title => 'Progresso', :format => '[%B] %p%%')
+    progressbar = ProgressBar.create(title: 'Progresso', format: '[%B] %p%%')
 
     cnpj = Utils.get_cnpj f, layout
 
@@ -84,7 +85,8 @@ Sequel.connect(config) do |db|
 
           if layout == :contrib
             cnpj = '' if registro.pai == '0001'
-            cnpj = registro.cnpj if registro.nome.end_with? '010' or registro.nome == '0140'
+            nome = registro.nome
+            cnpj = registro.cnpj if nome.end_with?('010') || nome == '0140'
           end
 
           tabela = "reg_#{registro.nome}".downcase.to_sym
@@ -94,14 +96,13 @@ Sequel.connect(config) do |db|
 
           id_pai = chaves[registro.pai] || (layout == :contrib ? 1 : 0)
 
-          valores = {:id => id, :id_pai => id_pai, :cnpj_pai => cnpj}.merge registro.to_h
+          valores = { id: id, id_pai: id_pai, cnpj_pai: cnpj }
+          valores.update registro.to_h
 
           db[tabela].insert valores
 
           progresso = ((sped.lineno * 100) / total_linhas).round
-          if progresso > progressbar.progress
-            progressbar.progress = progresso
-          end
+          progressbar.progress = progresso if progresso > progressbar.progress
         rescue
           progressbar.stop
           STDERR.puts linha
