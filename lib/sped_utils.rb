@@ -1,4 +1,4 @@
-class Utils
+module SpedUtils
   def self.get_first_line(file_path)
     file = File.open(file_path, 'r:CP850:UTF-8')
     file.readline

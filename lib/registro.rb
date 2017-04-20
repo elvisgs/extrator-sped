@@ -1,5 +1,6 @@
 require 'date'
 require 'yaml'
+require 'sped_error'
 
 class Registro
   attr_reader :nome, :pai, :campos, :valores
@@ -13,12 +14,15 @@ class Registro
 
   def initialize(linha, layout, versao)
     @layout = layout
-    @versao = versao
-    @@metadados ||= YAML.load_file("meta/metadados-#{@layout}-v#{@versao}.yml")
+    @version = versao
+    @@metadados ||= YAML.load_file("meta/metadados-#{@layout}-v#{@version}.yml")
     @valores = dividir_linha_em_valores linha
     @nome = @valores.shift.upcase
 
-    raise "Registro #{@nome} nao suportado" unless @@metadados.key? @nome
+    unless @@metadados.key? @nome
+      msg = "Registro #{@nome} nao suportado"
+      raise SpedError.new msg, linha
+    end
 
     @pai = @@metadados[@nome]['pai']
     @campos = @@metadados[@nome]['campos']

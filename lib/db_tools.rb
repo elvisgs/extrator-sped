@@ -3,15 +3,15 @@ require 'sequel'
 Sequel.extension :migration
 
 class DbTools
-  @@default_databases = {
-    postgres: 'template1',
-    mssql: 'master'
-  }
+  DEFAULT_DATABASES = {
+    ado: 'master',
+    mysql2: 'mysql',
+    postgres: 'template1'
+  }.freeze
 
-  def initialize(db_config, db_name, adapter, layout, layout_version)
+  def initialize(db_config, db_name, layout, layout_version)
     @db_config = db_config
     @db_name = db_name
-    @adapter = adapter
     @layout = layout
     @layout_version = layout_version
   end
@@ -25,7 +25,8 @@ class DbTools
   end
 
   def create
-    config = @db_config.merge(database: @@default_databases[@adapter])
+    adapter = @db_config[:adapter]
+    config = @db_config.merge(database: DEFAULT_DATABASES[adapter])
 
     Sequel.connect(config) do |db|
       db.run "create database #{@db_name}"

@@ -1,7 +1,6 @@
 #!/usr/bin/env ruby
 
-cwd = File.dirname(__FILE__)
-$LOAD_PATH.unshift cwd
+$LOAD_PATH.unshift File.expand_path('lib', File.dirname(__FILE__))
 
 require 'find'
 require 'ruby-progressbar'
@@ -9,7 +8,8 @@ require 'sequel'
 require 'yaml'
 require 'registro'
 require 'db_tools'
-require 'utils'
+require 'sped_utils'
+require 'sped2db'
 
 erro_proc = lambda do |msg, uso = false|
   STDERR.puts msg
@@ -25,13 +25,13 @@ caminho = ARGV.select { |arg| File.file?(arg) || File.directory?(arg) }[0]
 
 erro_proc['Caminho inválido', true] if caminho.nil?
 
-arquivos_sped = Find.find(caminho).select { |f| Utils.sped_file? f }
+arquivos_sped = Find.find(caminho).select { |f| SpedUtils.sped_file? f }
 num_arquivos = arquivos_sped.size
 
 erro_proc['Nenhum arquivo no formato SPED foi encontrado'] if num_arquivos.zero?
 
-layout = Utils.get_layout(arquivos_sped.first)
-versao = Utils.get_version arquivos_sped.first
+layout = SpedUtils.get_layout(arquivos_sped.first)
+versao = SpedUtils.get_version arquivos_sped.first
 versoes_validas = Registro.versoes[layout]
 unless versoes_validas.include? versao
   msg = "Versão #{versao} não suportada para o layout '#{layout}'\n"
@@ -42,7 +42,7 @@ end
 if nome_bd
   puts "SPED #{layout.to_s.capitalize} v#{versao}"
 
-  bd_sped = DbTools.new(config, nome_bd, sgbd.to_sym, layout, versao)
+  bd_sped = DbTools.new(config, nome_bd, layout, versao)
 
   if !bd_sped.exists?
     puts 'Criando banco de dados...'
@@ -57,59 +57,25 @@ else
   erro_proc['Informe o nome do banco de dados', true]
 end
 
-chaves = {}
-cont = 0
+sped2db = Sped2DB.new arquivos_sped, config
+progressbar = nil
 
-Sequel.connect(config) do |db|
-  arquivos_sped.each do |f|
-    puts format("\n[%03d/%03d] %s", cont + 1, num_arquivos, File.basename(f))
+sped2db.on :process_file_start do |file, index|
+  puts format("\n[%03d/%03d] %s", index + 1, num_arquivos, File.basename(file))
+  progressbar = ProgressBar.create(title: 'Progresso', format: '[%B] %p%%')
+end
+sped2db.on :progress do |progress|
+  progressbar.progress = progress if progress > progressbar.progress
+end
+sped2db.on :process_file_end do
+  progressbar.finish
+end
 
-    total_linhas = Utils.count_lines f
-
-    progressbar = ProgressBar.create(title: 'Progresso', format: '[%B] %p%%')
-
-    cnpj = Utils.get_cnpj f, layout
-
-    sped = File.open(f, 'r:CP850:UTF-8')
-
-    db.transaction do
-      sped.each_line do |linha|
-        begin
-          registro = Registro.new linha, layout, versao
-
-          if layout == :contrib
-            cnpj = '' if registro.pai == '0001'
-            nome = registro.nome
-            cnpj = registro.cnpj if nome.end_with?('010') || nome == '0140'
-          end
-
-          tabela = "reg_#{registro.nome}".downcase.to_sym
-          id = chaves[registro.nome] || Integer(db[tabela].max(:id) || 0)
-          id += 1
-          chaves[registro.nome] = id
-
-          id_pai = chaves[registro.pai] || (layout == :contrib ? 1 : 0)
-
-          valores = { id: id, id_pai: id_pai, cnpj_pai: cnpj }
-          valores.update registro.to_h
-
-          db[tabela].insert valores
-
-          progresso = ((sped.lineno * 100) / total_linhas).round
-          progressbar.progress = progresso if progresso > progressbar.progress
-        rescue => e
-          progressbar.stop
-          msg = "Erro: #{e.class}: #{e.message}\n#{e.backtrace.first}\n"
-          msg << "Linha #{sped.lineno}: #{linha}"
-          erro_proc[msg]
-        end
-      end
-    end
-
-    sped.close
-    cont += 1
-    progressbar.finish
-  end
-
-  puts "\n#{cont} arquivo(s) processado(s)."
+begin
+  sped2db.convert
+rescue => e
+  progressbar.stop
+  msg = "Erro: #{e.class}: #{e.message}\n#{e.backtrace.first}\n"
+  msg << "Linha #{e.lineno}: #{e.line}" if e.instance_of? SpedError
+  erro_proc[msg]
 end

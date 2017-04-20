@@ -6,15 +6,16 @@ Metrics/AbcSize:
   Max: 18
 
 Metrics/BlockLength:
-  Max: 45
+  Exclude:
+    - 'migrations/**/*'
 
 Metrics/MethodLength:
   Max: 15
 
 Style/ClassVars:
   Exclude:
-    - 'db_tools.rb'
-    - 'registro.rb'
+    - 'lib/db_tools.rb'
+    - 'lib/registro.rb'
 
 Style/Documentation:
   Enabled: false
