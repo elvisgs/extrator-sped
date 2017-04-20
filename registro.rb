@@ -57,7 +57,7 @@ class Registro
   end
 
   def corrigir_caracteres_especiais
-    @valores.map do |c|
+    @valores.map! do |c|
       c.strip!
       c.sub!(/,/, '.') if eh_decimal? c
       c.gsub!(/'/, "''")
