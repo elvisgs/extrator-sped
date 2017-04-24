@@ -1,3 +1,5 @@
+### Este projeto é obsoleto e não está sendo mais mantido. Use o [sped2db](https://github.com/elvisgs/sped2db).  
+
 ## Extrator SPED
 > Extrai as informações contidas em um ou mais arquivos no formato do SPED para um banco de dados SQLServer ou PostgreSQL.
 
